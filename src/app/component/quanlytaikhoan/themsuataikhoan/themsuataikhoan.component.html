@@ -1,0 +1,40 @@
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+  Thêm tài khoản
+</button>
+<div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAccountModalLabel">Thêm tài khoản</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addAccount()" #addAccountForm="ngForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Tên đăng nhập</label>
+              <input type="text" class="form-control" id="username" name="username" required [(ngModel)]="newAccount.username">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Mật khẩu</label>
+              <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="newAccount.password">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Xác nhận mật khẩu</label>
+              <input type="password" class="form-control" id="repassword" name="repassword" required [(ngModel)]="newAccount.repass">
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">Vai trò</label>
+              <select id="role" class="form-select" required [(ngModel)]="newAccount.role" name="role">
+                <option [ngValue]="0">Admin</option>
+                <option [ngValue]="1">Bác sĩ</option>
+                <option [ngValue]="2">Kế toán</option>
+                <option [ngValue]="3">Y tá</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Thêm tài khoản</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

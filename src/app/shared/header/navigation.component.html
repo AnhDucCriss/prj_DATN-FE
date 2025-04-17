@@ -1,0 +1,50 @@
+<!-- ============================================================== -->
+<!-- toggle and nav items -->
+<!-- ============================================================== -->
+<!-- <ul class="navbar-nav float-start me-auto">
+  <li class="nav-item">
+    <a class="nav-link waves-effect waves-dark" href="/dashboard"> Starter </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link waves-effect waves-dark" href="/about"> About </a>
+  </li>
+  <!-- ============================================================== -->
+  <!-- create new -->
+  <!-- ============================================================== -->
+  <!-- <li class="nav-item" ngbDropdown>
+
+    <a type="button" class="nav-link btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+      Create New
+    </a>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem>Action - 1</button>
+      <button ngbDropdownItem>Another Action</button>
+      <button ngbDropdownItem>Something else is here</button>
+    </div>
+  </li>
+</ul> --> 
+<!-- ============================================================== -->
+<!-- Right side toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-end">
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+  <li class="nav-item" ngbDropdown placement="bottom-end">
+    <a ngbDropdownToggle class="nav-link waves-effect waves-dark pro-pic" href="javascript:void(0)"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img src="assets/images/users/user4.jpg" alt="user" class="rounded-circle" width="31" />
+      <span class="ms-2">{{ username }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right text-center p-3 shadow-lg rounded" ngbDropdownMenu style="min-width: 250px;">
+      <img src="assets/images/logo.jpg" alt="avatar" class="rounded-circle mb-2" width="60" height="60">
+      <h6 class="mb-1 text-success">🎉 Chúc mừng!</h6>
+      <p class="text-muted mb-2" style="font-size: 14px;">Bạn đã đăng nhập thành công</p>
+      <div class="dropdown-divider"></div>
+      <a class="btn btn-danger w-100" href="/login">Đăng xuất</a>
+    </div>
+  </li>
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+</ul>

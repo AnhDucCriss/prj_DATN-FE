@@ -1,0 +1,15 @@
+body {
+    background: #f8f9fa;
+  }
+.card {
+border-radius: 12px;
+}
+.login-background {
+    background-image: url('/assets/images/background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -1,0 +1,34 @@
+<div class="modal fade show d-block" id="suaTaiKhoanModal" aria-labelledby="updAccountModalLabel" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updAccountModalLabel">Sửa tài khoản</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="capNhatTaiKhoan()">
+          <div class="mb-3">
+            <label class="form-label">Tên đăng nhập</label>
+            <input class="form-control" formControlName="username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" formControlName="password">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Vai trò</label>
+            <select id="role" class="form-select" formControlName="role" name="role">
+              <option [ngValue]="0">Admin</option>
+              <option [ngValue]="1">Bác sĩ</option>
+              <option [ngValue]="2">Y tá</option>
+              <option [ngValue]="3">Kế toán</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>
