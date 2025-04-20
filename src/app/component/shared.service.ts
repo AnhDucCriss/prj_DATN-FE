@@ -19,6 +19,7 @@ export class SharedService {
     });
   }
 
+  //Quản lý tài khoản
   // Lấy danh sách tài khoản
   layDSTaiKhoan(): Observable<any[]> {
     return this.http.get<any[]>(`${this.APIUrl}/User/get-users`, {
@@ -34,7 +35,7 @@ export class SharedService {
   }
 
   // Sửa tài khoản
-  suaTaiKhoan(id: number,val: any): Observable<any> {
+  suaTaiKhoan(id: string,val: any): Observable<any> {
     const body = {
       username: val.username,
       password: val.password,
@@ -47,12 +48,50 @@ export class SharedService {
   }
 
   // Xoá tài khoản
-  xoaTaiKhoan(id: number): Observable<any> {
+  xoaTaiKhoan(id: string): Observable<any> {
     return this.http.delete<any>(`${this.APIUrl}/User/delete-user/${id}`, {
       headers: this.getAuthHeaders()
     });
   }
-  getUserById(id: number): Observable<any> {
+  getUserById(id: string): Observable<any> {
     return this.http.get<any>(`${this.APIUrl}/User/get-user-by-id/${id}`);
+  }
+
+  //Quản lý bệnh nhân
+
+  layDSbenhnhan(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.APIUrl}/patient/get-patients`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Thêm bệnh nhân
+  themBenhNhan(val: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/patient/create`, val, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Sửa tài khoản
+  suabenhNhan(id: string,val: any): Observable<any> {
+    const body = {
+      username: val.username,
+      password: val.password,
+      role: val.role
+    };
+    return this.http.put<any>(`${this.APIUrl}/patient/update/${id}`, body, {
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
+
+  // Xoá tài khoản
+  xoaBenhNhan(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.APIUrl}/patient/delete/${id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+  getPatientById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/patient/get-patient-by-id/${id}`);
   }
 }

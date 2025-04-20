@@ -35,7 +35,7 @@ export class DstaikhoanComponent implements OnInit {
       }
     }
 
-    deleteAccount(id: number): void {
+    deleteAccount(id: string): void {
       if (confirm('Bạn có chắc chắn muốn xoá tài khoản này không?')) {
         this.service.xoaTaiKhoan(id).subscribe({
           next: () => {

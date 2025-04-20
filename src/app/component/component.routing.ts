@@ -1,60 +1,33 @@
 import { Routes } from '@angular/router';
-import { NgbdpaginationBasicComponent } from './pagination/pagination.component';
-import { NgbdAlertBasicComponent } from './alert/alert.component';
 
-import { NgbdDropdownBasicComponent } from './dropdown-collapse/dropdown-collapse.component';
-import { NgbdnavBasicComponent } from './nav/nav.component';
-import { BadgeComponent } from './badge/badge.component';
-import { NgbdButtonsComponent } from './buttons/buttons.component';
-import { CardsComponent } from './card/card.component';
-import { TableComponent } from './table/table.component';
-import { TestComponent } from './test/test.component';
+
 import { QuanlytaikhoanComponent } from './quanlytaikhoan/quanlytaikhoan.component';
+import { QuanlybenhnhanComponent } from './quanlybenhnhan/quanlybenhnhan.component';
+import { QuanlynhanvienComponent } from './quanlynhanvien/quanlynhanvien.component';
+import { QuanlydoanhthuComponent } from './quanlydoanhthu/quanlydoanhthu.component';
 
 export const ComponentsRoutes: Routes = [
 	{
 		path: '',
 		children: [
-			{
-				path: 'test',
-				component: TestComponent,
-			},
+			
 			{
 				path: 'quanlytaikhoan',
 				component: QuanlytaikhoanComponent,
 			},
 			{
-				path: 'table',
-				component: TableComponent
+				path: 'quanlybenhnhan',
+				component: QuanlybenhnhanComponent,
 			},
 			{
-				path: 'card',
-				component: CardsComponent
+				path: 'quanlynhanvien',
+				component: QuanlynhanvienComponent,
 			},
 			{
-				path: 'pagination',
-				component: NgbdpaginationBasicComponent
+				path: 'quanlydoanhthu',
+				component: QuanlydoanhthuComponent,
 			},
-			{
-				path: 'badges',
-				component: BadgeComponent
-			},
-			{
-				path: 'alert',
-				component: NgbdAlertBasicComponent
-			},
-			{
-				path: 'dropdown',
-				component: NgbdDropdownBasicComponent
-			},
-			{
-				path: 'nav',
-				component: NgbdnavBasicComponent
-			},
-			{
-				path: 'buttons',
-				component: NgbdButtonsComponent
-			}
+		
 		]
 	}
 ];

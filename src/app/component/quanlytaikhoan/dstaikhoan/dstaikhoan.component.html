@@ -10,7 +10,6 @@
           <table class="table align-middle text-nowrap">
               <thead>
                   <tr>
-                    <th class="text-dark font-medium fs-4">ID</th>
                     <th class="text-dark font-medium fs-4">Tên tài khoản</th>
                     <th class="text-dark font-medium fs-4">Mật khẩu</th>
                     <th class="text-dark font-medium fs-4">Role</th>
@@ -19,7 +18,6 @@
               </thead>
               <tbody>
                 <tr *ngFor="let tk of DSTaiKhoan">
-                    <td class="fs-4">{{ tk.id }}</td>
                     <td class="fs-4">{{ tk.username }}</td>
                     <td class="fs-4">{{ tk.password }}</td>
                     <td class="fs-4">{{ convertRole(tk.role) }}</td>

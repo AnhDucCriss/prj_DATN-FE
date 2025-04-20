@@ -1,0 +1,43 @@
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+    Thêm bệnh nhân
+  </button>
+  <div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addAccountModalLabel">Thêm tài khoản</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addPatient()" #addPatientForm="ngForm">
+              <div class="mb-3">
+                <label for="username" class="form-label">Tên đầy đủ</label>
+                <input type="text" class="form-control" id="username" name="username" required [(ngModel)]="newPatient.fullName">
+              </div>
+              <div class="mb-3">
+                <label for="role" class="form-label">Giới tính</label>
+                <select id="role" class="form-select" required  [(ngModel)]="newPatient.gender" name="role">
+                    <option [ngValue]="null" disabled selected>-- Chọn giới tính --</option>
+                    <option [ngValue]="0">Nam</option>
+                    <option [ngValue]="1">Nữ</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Tuổi</label>
+                <input type="password" class="form-control" id="repassword" name="repassword" required [(ngModel)]="newPatient.age">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Số điện thoại</label>
+                <input type="password" class="form-control" id="repassword" name="repassword" required [(ngModel)]="newPatient.phone">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Địa chỉ</label>
+                <input type="password" class="form-control" id="repassword" name="repassword" required [(ngModel)]="newPatient.address">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Thêm bệnh nhân</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
