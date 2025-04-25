@@ -1,1 +1,43 @@
-<p>themnhanvien works!</p>
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+    Thêm nhân viên
+</button>
+<div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="addAccountModalLabel">Thêm nhân viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+        <form (ngSubmit)="addAccount()" #addAccountForm="ngForm">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Tên nhân viên</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required [(ngModel)]="newStaff.fullName">
+            </div>
+            <div class="mb-3">
+            <label for="gender" class="form-label">Giới tính</label>
+            <select id="gender" class="form-select" required [(ngModel)]="newStaff.gender" name="gender">
+                <option [ngValue]="null" disabled selected>-- Chọn giới tính --</option>
+                <option [ngValue]="0">Nam</option>
+                <option [ngValue]="1">Nữ</option>
+            </select>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="phone" name="phone" required [(ngModel)]="newStaff.phone">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email" required [(ngModel)]="newStaff.email">
+            </div>
+            <div class="mb-3">
+                <label for="position" class="form-label">Chức vụ</label>
+                <input type="text" class="form-control" id="position" name="position" required [(ngModel)]="newStaff.position">
+            </div>
+            <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal">Thêm nhân viên</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+    

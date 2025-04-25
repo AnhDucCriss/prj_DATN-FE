@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared.service';
-import { Modal } from 'bootstrap';
+
 @Component({
   selector: 'app-dstaikhoan',
   templateUrl: './dstaikhoan.component.html',

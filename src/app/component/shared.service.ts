@@ -19,8 +19,9 @@ export class SharedService {
     });
   }
 
-  //Quản lý tài khoản
+  //#region quản lý tài khoản
   // Lấy danh sách tài khoản
+
   layDSTaiKhoan(): Observable<any[]> {
     return this.http.get<any[]>(`${this.APIUrl}/User/get-users`, {
       headers: this.getAuthHeaders()
@@ -56,8 +57,9 @@ export class SharedService {
   getUserById(id: string): Observable<any> {
     return this.http.get<any>(`${this.APIUrl}/User/get-user-by-id/${id}`);
   }
+  //#endregion
+  //#region quản lý bệnh nhân tài khoản
 
-  //Quản lý bệnh nhân
 
   layDSbenhnhan(): Observable<any[]> {
     return this.http.get<any[]>(`${this.APIUrl}/patient/get-patients`, {
@@ -94,4 +96,45 @@ export class SharedService {
   getPatientById(id: string): Observable<any> {
     return this.http.get<any>(`${this.APIUrl}/patient/get-patient-by-id/${id}`);
   }
+  //#endregion
+  //#region quản lý nhân viên
+  layDSNhanVien(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.APIUrl}/Staff/get-all`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Thêm tài khoản
+  themNhanVien(val: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/Staff/create`, val, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Sửa tài khoản
+  suaNhanVien(id: string,val: any): Observable<any> {
+    const body = {
+      fullName: val.fullName,
+      gender: val.gender,
+      phone: val.phone,
+      email: val.email,
+      position: val.position,
+    };
+    return this.http.put<any>(`${this.APIUrl}/Staff/update/${id}`, body, {
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
+
+  // Xoá tài khoản
+  xoaNhanVien(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.APIUrl}/Staff/delete/${id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+  getStaffById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/Staff/get-by-id/${id}`);
+  }
+  //#endregion
+
 }

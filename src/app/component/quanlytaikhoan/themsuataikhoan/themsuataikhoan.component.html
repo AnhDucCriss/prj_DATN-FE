@@ -6,7 +6,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addAccountModalLabel">Thêm tài khoản</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
         </div>
         <div class="modal-body">
           <form (ngSubmit)="addAccount()" #addAccountForm="ngForm">
@@ -23,15 +23,16 @@
               <input type="password" class="form-control" id="repassword" name="repassword" required [(ngModel)]="newAccount.repass">
             </div>
             <div class="mb-3">
-              <label for="role" class="form-label">Vai trò</label>
+              <label for="role" class="form-label">Phân quyền</label>
               <select id="role" class="form-select" required [(ngModel)]="newAccount.role" name="role">
+                <option [ngValue]="null" disabled selected>-- Chọn quyền --</option>
                 <option [ngValue]="0">Admin</option>
                 <option [ngValue]="1">Bác sĩ</option>
                 <option [ngValue]="2">Kế toán</option>
                 <option [ngValue]="3">Y tá</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Thêm tài khoản</button>
+            <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal">Thêm tài khoản</button>
           </form>
         </div>
       </div>

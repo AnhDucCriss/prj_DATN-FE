@@ -8,11 +8,12 @@ import { SharedService } from '../../shared.service';
   styleUrls: ['./themsuataikhoan.component.scss']
 })
 export class ThemsuataikhoanComponent {
+
   roles = [
     { label: 'Admin', value: 0 },
     { label: 'Bác sĩ', value: 1 },
-    { label: 'Kế toán', value: 2 },
-    { label: 'Y tá', value: 3 }
+    { label: 'Y tá', value: 2 },
+    { label: 'Kế toán', value: 3 }
   ];
   newAccount = {
     username: '',
@@ -39,7 +40,7 @@ export class ThemsuataikhoanComponent {
     };
     this.service.themTaiKhoan(val1).subscribe(res =>{
       console.log(this.newAccount); // Kiểm tra trước khi gửi API
-      alert('Tạo tài khoản thành công');
+      alert(res.message); // hiện thông báo
       this.reloadEvent.emit();
       console.log('Thêm tài khoản thành công', res);
       this.dongModal.emit();

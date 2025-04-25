@@ -13,7 +13,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/component/quanlytaikhoan',
     title: 'Quản lý tài khoản',
-    icon: 'bi bi-bell',
+    icon: 'bi bi-person-circle',
     class: '',
     extralink: false,
     submenu: []
@@ -21,12 +21,19 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/component/quanlybenhnhan',
     title: 'Quản lý bệnh nhân',
-    icon: 'bi bi-bell',
+    icon: 'bi bi-heart-pulse-fill',
     class: '',
     extralink: false,
     submenu: []
   },
-  
+  {
+    path: '/component/quanlynhanvien',
+    title: 'Quản lý nhân viên',
+    icon: 'bi bi-bag-plus-fill',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
   {
     path: '/about',
     title: 'About',

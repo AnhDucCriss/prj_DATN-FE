@@ -1,1 +1,46 @@
-<p>dsnhanvien works!</p>
+<div class="card w-100">
+    <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
+      <h2 class="card-title mb-0 fw-bold">Danh sách nhân viên</h2>
+      <app-themnhanvien (reloadEvent)="taiLaiDSNhanVien()"></app-themnhanvien>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        
+        <div class="table-responsive">
+          <table class="table align-middle text-nowrap">
+              <thead>
+                  <tr>
+                    <th class="text-dark font-medium fs-4">Tên nhân viên</th>
+                    <th class="text-dark font-medium fs-4">Giới tính</th>
+                    <th class="text-dark font-medium fs-4">Số điện thoại</th>
+                    <th class="text-dark font-medium fs-4">Email</th>
+                    <th class="text-dark font-medium fs-4">Chức vụ</th>
+                    <th class="text-dark font-medium fs-4">Thao tác</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let nv of DSNhanVien">
+                    <td class="fs-4">{{ nv.fullName }}</td>
+                    <td class="fs-4">{{ convertGender(nv.gender) }}</td>
+                    <td class="fs-4">{{ nv.phone }}</td>
+                    <td class="fs-4">{{ nv.email }}</td>
+                    <td class="fs-4">{{ nv.position }}</td>
+                    <td class="fs-4">
+                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updAccountModal" (click)="chonNhanVienDeSua(nv)">Sửa</button>
+                       &nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteStaff(nv.id)">Xoá</button>
+                    </td>
+                  </tr>
+                            
+              </tbody>
+          </table>
+       </div>
+      </div>
+    </div>
+  </div>
+  <app-suanhanvien 
+  *ngIf="dangSua"
+  [nhanVien]="nhanVienDangSua"
+  (dongModal)="dongModalSua()"
+  (reloadEvent)="taiLaiDSNhanVien(); dongModalSua()">
+  </app-suanhanvien>

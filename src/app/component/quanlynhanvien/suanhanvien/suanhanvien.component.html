@@ -1,1 +1,41 @@
-<p>suanhanvien works!</p>
+<div class="modal fade show d-block" id="suaNhanVienModal" aria-labelledby="updAccountModalLabel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updAccountModalLabel">Sửa nhân viên</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" (ngSubmit)="capNhatNhanVien()">
+            <div class="mb-3">
+              <label class="form-label">Tên đăng nhập</label>
+              <input class="form-control" formControlName="fullName">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Giới tính</label>
+              <select id="role" class="form-select" formControlName="gender" name="gender">
+                <option [ngValue]="0">Nam</option>
+                <option [ngValue]="1">Nữ</option>
+              </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Số điện thoại</label>
+                <input class="form-control" formControlName="phone">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" formControlName="email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Chức vụ</label>
+                <input class="form-control" formControlName="position">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade show"></div>
+  

@@ -12,6 +12,10 @@ import { DsbenhnhanComponent } from './quanlybenhnhan/dsbenhnhan/dsbenhnhan.comp
 import { QuanlybenhnhanComponent } from './quanlybenhnhan/quanlybenhnhan.component';
 import { ThembenhnhanComponent } from './quanlybenhnhan/thembenhnhan/thembenhnhan.component';
 import { SuabenhnhanComponent } from './quanlybenhnhan/suabenhnhan/suabenhnhan.component';
+import { QuanlynhanvienComponent } from './quanlynhanvien/quanlynhanvien.component';
+import { DsnhanvienComponent } from './quanlynhanvien/dsnhanvien/dsnhanvien.component';
+import { ThemnhanvienComponent } from './quanlynhanvien/themnhanvien/themnhanvien.component';
+import { SuanhanvienComponent } from './quanlynhanvien/suanhanvien/suanhanvien.component';
 
 @NgModule({
   imports: [
@@ -32,8 +36,12 @@ import { SuabenhnhanComponent } from './quanlybenhnhan/suabenhnhan/suabenhnhan.c
     QuanlybenhnhanComponent,
     DsbenhnhanComponent,
     ThembenhnhanComponent,
-    SuabenhnhanComponent
+    SuabenhnhanComponent,
     
+    QuanlynhanvienComponent,
+    DsnhanvienComponent,
+    ThemnhanvienComponent,
+    SuanhanvienComponent,
   ],
   
 })
