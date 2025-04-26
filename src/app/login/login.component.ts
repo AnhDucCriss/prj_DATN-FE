@@ -12,7 +12,7 @@ export class LoginComponent {
     username: '',
     password: ''
   };
-
+  
   errorMessage: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}

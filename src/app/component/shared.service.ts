@@ -135,6 +135,9 @@ export class SharedService {
   getStaffById(id: string): Observable<any> {
     return this.http.get<any>(`${this.APIUrl}/Staff/get-by-id/${id}`);
   }
+  getStaffByName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/Staff/search/${name}`);
+  }
   //#endregion
 
 }
