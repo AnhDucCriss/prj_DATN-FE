@@ -1,63 +1,97 @@
 <div class="card w-100">
-    <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
-      <h2 class="card-title mb-0 fw-bold">Danh sách nhân viên</h2>
-      <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Tìm theo tên..." 
-        [(ngModel)]="tuKhoaTimKiem" 
-        (input)="timKiemNhanVien(tuKhoaTimKiem)" 
-        style="width: 250px;"
-      />
-      <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Tìm theo chức vụ..." 
-        [(ngModel)]="chucVu" 
-        (input)="timKiemNhanVienTheoChucVu(chucVu)" 
-        style="width: 250px;"
-      />
-      <app-themnhanvien (reloadEvent)="taiLaiDSNhanVien()"></app-themnhanvien>
+  <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
+    <h2 class="card-title mb-0 fw-bold">Danh sách nhân viên</h2>
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Tìm theo tên..." 
+      [(ngModel)]="tuKhoaTimKiem" 
+      (input)="timKiemNhanVien(tuKhoaTimKiem)" 
+      style="width: 250px;"
+    />
+    <app-themnhanvien (reloadEvent)="loadStaff()"></app-themnhanvien>
+  </div>
 
-    </div>
-    <div class="card">
-      <div class="card-body">
-        
-        <div class="table-responsive">
-          <table class="table align-middle text-nowrap">
-              <thead>
-                  <tr>
-                    <th class="text-dark font-medium fs-4">Tên nhân viên</th>
-                    <th class="text-dark font-medium fs-4">Giới tính</th>
-                    <th class="text-dark font-medium fs-4">Số điện thoại</th>
-                    <th class="text-dark font-medium fs-4">Email</th>
-                    <th class="text-dark font-medium fs-4">Chức vụ</th>
-                    <th class="text-dark font-medium fs-4">Thao tác</th>
-                  </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let nv of DSNhanVien">
-                    <td class="fs-4">{{ nv.fullName }}</td>
-                    <td class="fs-4">{{ convertGender(nv.gender) }}</td>
-                    <td class="fs-4">{{ nv.phone }}</td>
-                    <td class="fs-4">{{ nv.email }}</td>
-                    <td class="fs-4">{{ nv.position }}</td>
-                    <td class="fs-4">
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updAccountModal" (click)="chonNhanVienDeSua(nv)">Sửa</button>
-                       &nbsp;&nbsp;
-                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteStaff(nv.id)">Xoá</button>
-                    </td>
-                  </tr>
-                            
-              </tbody>
-          </table>
-       </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle text-nowrap">
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Tên nhân viên</th>
+              <th class="text-dark font-medium fs-4">Giới tính</th>
+              <th class="text-dark font-medium fs-4">Số điện thoại</th>
+              <th class="text-dark font-medium fs-4">Email</th>
+              <th class="text-dark font-medium fs-4">Chức vụ</th>
+              <th class="text-dark font-medium fs-4">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let nv of DSNhanVien.items">
+              <td class="fs-4">{{ nv.fullName }}</td>
+              <td class="fs-4">{{ convertGender(nv.gender) }}</td>
+              <td class="fs-4">{{ nv.phone }}</td>
+              <td class="fs-4">{{ nv.email }}</td>
+              <td class="fs-4">{{ nv.position }}</td>
+              <td class="fs-4">
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updAccountModal" (click)="chonNhanVienDeSua(nv)">Sửa</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteStaff(nv.id)">Xoá</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      
+
+
+      <!-- Phân trang -->
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <button 
+          class="btn transparent-button" 
+          [disabled]="pageNumber === 1" 
+          (click)="loadStaff(pageNumber = 1)" 
+          title="Trang đầu">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+      
+        <button 
+          class="btn transparent-button" 
+          [disabled]="pageNumber === 1" 
+          (click)="loadStaff(pageNumber - 1)" 
+          title="Trang trước">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+      
+        <span class="mx-2">Trang {{ pageNumber }} của {{ totalPages }}</span>
+      
+        <button 
+          class="btn transparent-button" 
+          [disabled]="pageNumber === totalPages" 
+          (click)="loadStaff(pageNumber + 1)" 
+          title="Trang sau">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      
+        <button 
+          class="btn transparent-button" 
+          [disabled]="pageNumber === totalPages" 
+          (click)="loadStaff(pageNumber = totalPages)" 
+          title="Trang cuối">
+          <i class="bi bi-chevron-double-right"></i>
+        </button>
+
+      </div>
+      
+
+      
     </div>
   </div>
-  <app-suanhanvien 
+</div>
+
+<app-suanhanvien 
   *ngIf="dangSua"
   [nhanVien]="nhanVienDangSua"
   (dongModal)="dongModalSua()"
-  (reloadEvent)="taiLaiDSNhanVien(); dongModalSua()">
-  </app-suanhanvien>
+  (reloadEvent)="loadStaff(); dongModalSua()">
+</app-suanhanvien>

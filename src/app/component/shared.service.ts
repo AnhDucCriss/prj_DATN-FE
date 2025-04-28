@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:7201/api';
+  private readonly APIUrl = 'https://localhost:44316/api';
 
   constructor(private http: HttpClient) {}
 
@@ -138,6 +138,15 @@ export class SharedService {
   getStaffByName(name: string): Observable<any> {
     return this.http.get<any>(`${this.APIUrl}/Staff/search/${name}`);
   }
+  getStaff( page: number,) {
+    const params = {
+     
+      pageNumber: page,
+
+    };
+    return this.http.get<any>(`${this.APIUrl}/Staff/get-all?`, { params });
+  }
+  
   //#endregion
 
 }

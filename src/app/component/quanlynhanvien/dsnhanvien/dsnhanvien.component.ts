@@ -11,9 +11,7 @@ export class DsnhanvienComponent implements OnInit {
       
   DSNhanVien:any=[];
   ngOnInit(): void {
-    
-    this.taiLaiDSNhanVien(); 
-    
+    this.loadStaff();  // Tải danh sách nhân viên ban đầu
   }
   convertGender(gender: number): string {
     switch (gender) {
@@ -22,8 +20,9 @@ export class DsnhanvienComponent implements OnInit {
       default: return 'Không xác định';
     }
   }
+  timKiemRong: any = null;
   taiLaiDSNhanVien() {
-    this.service.layDSNhanVien().subscribe({
+    this.service.getStaffByName(this.timKiemRong).subscribe({
       next: (data) => {
         this.DSNhanVien = data;
       },
@@ -53,31 +52,54 @@ export class DsnhanvienComponent implements OnInit {
   dongModalSua() {
     this.dangSua = false;
   }
-
-  //Tìm kiếm theo tên
-  tuKhoaTimKiem: string = '';
-  DSNhanVienLoc: any[] = []; // danh sách nhân viên sau khi lọc
-  timKiemNhanVien(tuKhoaTimKiem: any){
-    const keyword = this.tuKhoaTimKiem.trim();
-    if (keyword.length === 0) {
-      this.taiLaiDSNhanVien(); // Gọi lại tất cả nhân viên nếu từ khóa rỗng
-      return;
-    }
   
-    
-    this.service.getStaffByName(tuKhoaTimKiem).subscribe({
+  tuKhoaTimKiem: any = null;
+  chucVu: any = null;
+  // Thuộc tính để lưu trữ thông tin phân trang
+  totalRecords: number = 21;  // Tổng số bản ghi
+  totalPages: number = 1;    // Tổng số trang
+  pageNumber: number = 1;    // Số trang hiện tại
+  pageSize: number = 10;     // Số bản ghi mỗi trang
+
+  
+
+  // Các thuộc tính khác như từ khóa tìm kiếm, vị trí nhân viên (chức vụ) nếu có
+  pages: number[] = [];
+  generatePages() {
+    this.pages = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      this.pages.push(i);
+    }
+  }
+  
+  loadStaff(page: number = 1) {
+    if (page >= 1 && page <= this.totalPages) {
+    this.pageNumber = page;  // Cập nhật số trang hiện tại
+  
+    // Gọi API với số trang hiện tại và số bản ghi mỗi trang
+    this.service.getStaff(this.pageNumber).subscribe({
       next: (data) => {
-        this.DSNhanVien = data;
+        this.DSNhanVien = data;  // Cập nhật danh sách nhân viên
+        this.totalRecords = data.totalRecords;  // Cập nhật tổng số bản ghi
+        this.totalPages = Math.ceil(this.totalRecords / this.pageSize);  // Tính tổng số trang
       },
       error: (err) => {
-        console.error('Lỗi khi tìm kiếm nhân viên:', err);
+        console.error('Lỗi tải danh sách nhân viên', err);
       }
     });
-  } 
-
-  //Tìm kiếm theo chức vụ
-  chucVu: string = '';
-  
+  }
+  }
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.totalRecords / 10);
+  }
+  timKiemNhanVien(tuKhoaTimKiem: string) {
+    this.tuKhoaTimKiem = tuKhoaTimKiem.trim();
+    if (this.tuKhoaTimKiem.length === 0) {
+      this.loadStaff();  // Nếu từ khóa tìm kiếm rỗng, tải lại tất cả nhân viên
+    } else {
+      this.loadStaff();  // Gọi lại loadStaff để thực hiện tìm kiếm và phân trang
+    }
+  }
   
 
 }
