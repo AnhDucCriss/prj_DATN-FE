@@ -5,6 +5,7 @@ import { QuanlytaikhoanComponent } from './quanlytaikhoan/quanlytaikhoan.compone
 import { QuanlybenhnhanComponent } from './quanlybenhnhan/quanlybenhnhan.component';
 import { QuanlynhanvienComponent } from './quanlynhanvien/quanlynhanvien.component';
 import { QuanlydoanhthuComponent } from './quanlydoanhthu/quanlydoanhthu.component';
+import { QuanlykhothuocComponent } from './quanlykhothuoc/quanlykhothuoc.component';
 
 export const ComponentsRoutes: Routes = [
 	{
@@ -22,6 +23,10 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'quanlynhanvien',
 				component: QuanlynhanvienComponent,
+			},
+			{
+				path: 'quanlykhothuoc',
+				component: QuanlykhothuocComponent,
 			},
 			{
 				path: 'quanlydoanhthu',

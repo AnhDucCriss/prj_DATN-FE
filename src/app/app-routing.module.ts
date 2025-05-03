@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { LoginComponent } from './login/login.component';
+import { QuanlyhosokhambenhComponent } from './component/quanlyhosokhambenh/quanlyhosokhambenh.component';
 
 
 
@@ -32,13 +33,15 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'hoso-khambenh/:id',
+        component: QuanlyhosokhambenhComponent
       }
-      
     ]
   },
   {
     path: '**',
     redirectTo: '/starter'
   },
-  
 ];

@@ -9,7 +9,12 @@ export class DsnhanvienComponent implements OnInit {
 
   constructor(private service:SharedService) {}
       
-  DSNhanVien:any=[];
+  DSNhanVien: any = {
+    items: [],
+    totalRecords: 0,
+    pageNumber: 1,
+    pageSize: 10
+  };
   ngOnInit(): void {
     this.loadStaff();  // Tải danh sách nhân viên ban đầu
   }
@@ -53,8 +58,8 @@ export class DsnhanvienComponent implements OnInit {
     this.dangSua = false;
   }
   
-  tuKhoaTimKiem: any = null;
-  chucVu: any = null;
+  tuKhoaTimKiem: string = '';
+  chucVuTimKiem: string = '';
   // Thuộc tính để lưu trữ thông tin phân trang
   totalRecords: number = 21;  // Tổng số bản ghi
   totalPages: number = 1;    // Tổng số trang
@@ -92,14 +97,21 @@ export class DsnhanvienComponent implements OnInit {
   calculateTotalPages() {
     this.totalPages = Math.ceil(this.totalRecords / 10);
   }
-  timKiemNhanVien(tuKhoaTimKiem: string) {
-    this.tuKhoaTimKiem = tuKhoaTimKiem.trim();
-    if (this.tuKhoaTimKiem.length === 0) {
-      this.loadStaff();  // Nếu từ khóa tìm kiếm rỗng, tải lại tất cả nhân viên
-    } else {
-      this.loadStaff();  // Gọi lại loadStaff để thực hiện tìm kiếm và phân trang
-    }
+  timKiemNhanVien(): void {
+    const body = {
+      name: this.tuKhoaTimKiem,
+      position: this.chucVuTimKiem,
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize
+    };
+  
+    this.service.getStaffByName(body).subscribe(res => {
+      this.DSNhanVien = res;
+      this.pageNumber = res.pageNumber;
+      this.totalPages = Math.ceil(res.totalRecords / res.pageSize);
+    });
   }
+  
   
 
 }

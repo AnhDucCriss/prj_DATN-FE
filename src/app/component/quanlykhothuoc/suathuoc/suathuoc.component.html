@@ -1,0 +1,36 @@
+<div class="modal fade show d-block" id="suaThuocModal" aria-labelledby="updMedicineModalLabel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updMedicineModalLabel">Sửa thuốc</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="capNhatThuoc()">
+                    <div class="mb-3">
+                        <label class="form-label">Tên thuốc</label>
+                        <input class="form-control" formControlName="medicineName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Đơn vị</label>
+                        <input class="form-control" formControlName="unit">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giá</label>
+                        <input type="number" class="form-control" formControlName="price">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <input class="form-control" formControlName="description">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Danh mục</label>
+                        <input class="form-control" formControlName="category">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>

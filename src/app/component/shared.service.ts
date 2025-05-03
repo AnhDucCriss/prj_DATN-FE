@@ -61,41 +61,54 @@ export class SharedService {
   //#region quản lý bệnh nhân tài khoản
 
 
-  layDSbenhnhan(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.APIUrl}/patient/get-patients`, {
+  getPatientList(pageNumber: any) {
+    return this.http.post<any>(`${this.APIUrl}/patient/get-all`, pageNumber, {
       headers: this.getAuthHeaders()
     });
   }
 
-  // Thêm bệnh nhân
+  // Tìm kiếm bệnh nhân theo tên + phân trang
+  searchPatient(filter: any) {
+    return this.http.post<any>(`${this.APIUrl}/patient/search`, filter, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Xóa bệnh nhân theo id
+  deletePatient(id: string) {
+    return this.http.delete<any>(`${this.APIUrl}/patient/delete/${id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+ 
   themBenhNhan(val: any): Observable<any> {
     return this.http.post<any>(`${this.APIUrl}/patient/create`, val, {
       headers: this.getAuthHeaders()
     });
   }
 
-  // Sửa tài khoản
-  suabenhNhan(id: string,val: any): Observable<any> {
+  // Sửa bệnh nhân
+  suaBenhNhan(id: string,val: any): Observable<any> {
     const body = {
-      username: val.username,
-      password: val.password,
-      role: val.role
+      fullName: val.fullName,
+      gender: val.gender,
+      age: val.age,
+      phone: val.phone,
+      address: val.address,
+      email: val.email,
     };
     return this.http.put<any>(`${this.APIUrl}/patient/update/${id}`, body, {
       headers: this.getAuthHeaders(),
       
     });
   }
-
-  // Xoá tài khoản
-  xoaBenhNhan(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.APIUrl}/patient/delete/${id}`, {
+  
+  getPatientById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/patient/get-patient-by-id/${id}`, {
       headers: this.getAuthHeaders()
     });
   }
-  getPatientById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.APIUrl}/patient/get-patient-by-id/${id}`);
-  }
+
   //#endregion
   //#region quản lý nhân viên
   layDSNhanVien(): Observable<any[]> {
@@ -133,20 +146,70 @@ export class SharedService {
     });
   }
   getStaffById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.APIUrl}/Staff/get-by-id/${id}`);
+    return this.http.get<any>(`${this.APIUrl}/Staff/get-by-id/${id}`, {
+      headers: this.getAuthHeaders(),
+      
+    });
   }
-  getStaffByName(name: string): Observable<any> {
-    return this.http.get<any>(`${this.APIUrl}/Staff/search/${name}`);
+  getStaffByName(body: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/Staff/search`, body, {
+      headers: this.getAuthHeaders(),
+      
+    });
   }
+  
   getStaff( page: number,) {
     const params = {
      
       pageNumber: page,
 
     };
-    return this.http.get<any>(`${this.APIUrl}/Staff/get-all?`, { params });
+    const headers = this.getAuthHeaders(); // thường là HttpHeaders
+    return this.http.get<any>(`${this.APIUrl}/Staff/get-all?`, { params, headers }, );
   }
   
   //#endregion
 
+  //#region Quản lý kho thuốc
+  // Lấy danh sách thuốc với phân trang
+  getMedicineList(page: number, pageSize: number = 10): Observable<any> {
+    const body = {
+      pageNumber: page,
+      pageSize: pageSize
+    };
+  
+    return this.http.post<any>(`${this.APIUrl}/Medicine/get-all`, body, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+  
+  suaThuoc(id: string, updatedThuoc: any): Observable<any> {
+    return this.http.put<any>(`${this.APIUrl}/Medicine/update/${id}`, updatedThuoc, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  // Tìm kiếm thuốc theo tên và hoạt chất
+  searchMedicine(body: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/Medicine/search`, body, {
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
+
+  // Xoá thuốc theo ID
+  deleteMedicine(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.APIUrl}/Medicine/delete/${id}`, {
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
+
+  themThuoc(data: any): Observable<any> {
+    return this.http.post<any>(this.APIUrl + '/Medicine/create', data, {
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
+  //#endregion
 }

@@ -1,0 +1,96 @@
+<div class="card w-100">
+  <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
+    <h2 class="card-title mb-0 fw-bold">Danh sách kho thuốc</h2>
+    <app-themthuoc (reloadEvent)="loadThuoc()"></app-themthuoc>
+  </div>
+
+  <div class="card-body">
+    <form class="row g-2 align-items-center justify-content-start mb-3">
+      <div class="col-auto">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Tìm theo tên thuốc..." 
+          [(ngModel)]="tenThuocTimKiem"
+          name="tenThuocSearch"
+        />
+      </div>
+
+      <div class="col-auto">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Tìm theo loại thuốc..." 
+          [(ngModel)]="loaiThuocTimKiem"
+          name="loaiThuocSearch"
+        />
+      </div>
+
+      <div class="col-auto">
+        <button 
+          type="button" 
+          class="btn btn-primary"
+          (click)="timKiemThuoc()">
+          <i class="bi bi-search"></i> Tìm kiếm
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle text-nowrap">
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Tên thuốc</th>
+              <th class="text-dark font-medium fs-4">Đơn vị</th>
+              <th class="text-dark font-medium fs-4">Loại thuốc</th>
+              <th class="text-dark font-medium fs-4">Mô tả</th>
+              <th class="text-dark font-medium fs-4">Giá</th>
+              <th class="text-dark font-medium fs-4">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let thuoc of DSThuoc.items">
+              <td class="fs-4">{{ thuoc.medicineName }}</td>
+              <td class="fs-4">{{ thuoc.unit }}</td>
+              <td class="fs-4">{{ thuoc.category }}</td>
+              <td class="fs-4">{{ thuoc.description }}</td>
+              <td class="fs-4">{{ thuoc.price | number:'1.0-0' }} đ</td>
+              <td class="fs-4">
+                <button type="button" class="btn btn-sm btn-primary" (click)="chonThuocDeSua(thuoc)">Sửa</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-danger btn-sm" (click)="xoaThuoc(thuoc.id)">Xoá</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Phân trang -->
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <button class="btn transparent-button" [disabled]="pageNumber === 1" (click)="loadThuoc(1)">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+        <button class="btn transparent-button" [disabled]="pageNumber === 1" (click)="loadThuoc(pageNumber - 1)">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <span class="mx-2">Trang {{ pageNumber }} của {{ totalPages }}</span>
+        <button class="btn transparent-button" [disabled]="pageNumber === totalPages" (click)="loadThuoc(pageNumber + 1)">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+        <button class="btn transparent-button" [disabled]="pageNumber === totalPages" (click)="loadThuoc(totalPages)">
+          <i class="bi bi-chevron-double-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-suathuoc 
+  *ngIf="dangSua"
+  [thuoc]="thuocDangSua"
+  (dongModal)="dongModalSua()"
+  (reloadEvent)="loadThuoc(); dongModalSua()">
+</app-suathuoc>

@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addMedicineModal">
+    Thêm thuốc
+</button>
+
+<div class="modal fade" id="addMedicineModal" tabindex="-1" aria-labelledby="addMedicineModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="addMedicineModalLabel">Thêm thuốc</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form (ngSubmit)="addMedicine()" #addMedicineForm="ngForm">
+            <div class="mb-3">
+                <label for="medicineName" class="form-label">Tên thuốc</label>
+                <input type="text" class="form-control" id="medicineName" name="medicineName" required [(ngModel)]="newMedicine.medicineName">
+            </div>
+            <div class="mb-3">
+                <label for="unit" class="form-label">Đơn vị</label>
+                <input type="text" class="form-control" id="unit" name="unit" [(ngModel)]="newMedicine.unit">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Giá</label>
+                <input type="number" class="form-control" id="price" name="price" required min="0" [(ngModel)]="newMedicine.price">
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Loại</label>
+                <input type="text" class="form-control" id="category" name="category" [(ngModel)]="newMedicine.category">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Mô tả</label>
+                <textarea class="form-control" id="description" name="description" [(ngModel)]="newMedicine.description" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal">Thêm thuốc</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>

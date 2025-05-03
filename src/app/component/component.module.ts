@@ -16,6 +16,14 @@ import { QuanlynhanvienComponent } from './quanlynhanvien/quanlynhanvien.compone
 import { DsnhanvienComponent } from './quanlynhanvien/dsnhanvien/dsnhanvien.component';
 import { ThemnhanvienComponent } from './quanlynhanvien/themnhanvien/themnhanvien.component';
 import { SuanhanvienComponent } from './quanlynhanvien/suanhanvien/suanhanvien.component';
+import { QuanlydonthuocComponent } from './quanlydonthuoc/quanlydonthuoc.component';
+import { ThemdonthuocComponent } from './quanlydonthuoc/themdonthuoc/themdonthuoc.component';
+import { SuadonthuocComponent } from './quanlydonthuoc/suadonthuoc/suadonthuoc.component';
+import { QuanlykhothuocComponent } from './quanlykhothuoc/quanlykhothuoc.component';
+import { ThemthuocComponent } from './quanlykhothuoc/themthuoc/themthuoc.component';
+import { SuathuocComponent } from './quanlykhothuoc/suathuoc/suathuoc.component';
+import { DsthuocComponent } from './quanlykhothuoc/dsthuoc/dsthuoc.component';
+import { QuanlyhosokhambenhComponent } from './quanlyhosokhambenh/quanlyhosokhambenh.component';
 
 @NgModule({
   imports: [
@@ -42,6 +50,16 @@ import { SuanhanvienComponent } from './quanlynhanvien/suanhanvien/suanhanvien.c
     DsnhanvienComponent,
     ThemnhanvienComponent,
     SuanhanvienComponent,
+
+    QuanlydonthuocComponent,
+    ThemdonthuocComponent,
+    SuadonthuocComponent,
+    
+    QuanlykhothuocComponent,
+    ThemthuocComponent,
+    SuathuocComponent,
+    DsthuocComponent,
+    QuanlyhosokhambenhComponent,
   ],
   
 })

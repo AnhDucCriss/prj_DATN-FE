@@ -1,1 +1,74 @@
-<p>suabenhnhan works!</p>
+<div class="modal fade show d-block" id="suaBenhNhanModal" aria-labelledby="updPatientModalLabel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updPatientModalLabel">Sửa bệnh nhân</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" (ngSubmit)="capNhatBenhNhan()">
+            <div class="mb-3">
+              <label class="form-label">Họ và tên</label>
+              <input type="text" class="form-control" formControlName="fullName" />
+              <div *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched" class="text-danger">
+                Họ tên không được để trống
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Giới tính</label>
+              <select class="form-select" formControlName="gender">
+                <option [ngValue]="0">Nam</option>
+                <option [ngValue]="1">Nữ</option>
+              </select>
+              <div *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched" class="text-danger">
+                Vui lòng chọn giới tính
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Tuổi</label>
+              <input type="number" class="form-control" formControlName="age" />
+              <div *ngIf="form.get('age')?.invalid && form.get('age')?.touched" class="text-danger">
+                Tuổi phải là số không âm
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Số điện thoại</label>
+              <input type="text" class="form-control" formControlName="phone" />
+              <div *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched" class="text-danger">
+                Số điện thoại không được để trống
+              </div>
+              <div *ngIf="form.get('phone')?.errors?.['pattern'] && form.get('phone')?.touched" class="text-danger">
+                Số điện thoại phải có 10 chữ số và bắt đầu bằng 0
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Địa chỉ</label>
+              <input type="text" class="form-control" formControlName="address" />
+              <div *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="text-danger">
+                Địa chỉ không được để trống
+              </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" formControlName="email" />
+                <div *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched" class="text-danger">
+                    Email không được để trống
+                  </div>
+                  <div *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched" class="text-danger">
+                    Email không đúng định dạng
+                  </div>
+              </div>
+  
+            <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade show"></div>
+  

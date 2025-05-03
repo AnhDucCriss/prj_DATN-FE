@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./thembenhnhan.component.scss']
 })
 export class ThembenhnhanComponent {
+  
   gender = [
       { label: 'Nam', value: 0 },
       { label: 'Nữ', value: 1 },
@@ -17,6 +18,7 @@ export class ThembenhnhanComponent {
       age: null,
       phone: null,
       address: '',
+      email: ''
     };
     @Output() dongModal = new EventEmitter<void>();
     constructor( private fb: FormBuilder, private service:SharedService) {}
