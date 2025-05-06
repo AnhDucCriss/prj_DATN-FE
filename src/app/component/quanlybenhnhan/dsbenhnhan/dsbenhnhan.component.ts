@@ -106,7 +106,9 @@ export class DsbenhnhanComponent implements OnInit {
     console.log('Đóng modal sửa');
   }
 
-  goToMedicalRecord(patientId: number) {
-    this.router.navigate(['hoso-khambenh', patientId]);// Đường dẫn tuỳ bạn đặt trong routing
+  goToMedicalRecord(patientId: string, fullName: string) {
+    this.router.navigate(['hoso-khambenh', patientId], {
+      queryParams: { name: fullName }
+    });
   }
 }

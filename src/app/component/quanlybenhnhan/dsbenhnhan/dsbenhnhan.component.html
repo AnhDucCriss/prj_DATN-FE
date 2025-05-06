@@ -53,13 +53,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let bn of DSBenhNhan.items" (click)="goToMedicalRecord(bn.id)" style="cursor: pointer;">
-              <td class="fs-4">{{ bn.fullName }}</td>
-              <td class="fs-4">{{ convertGender(bn.gender) }}</td>
-              <td class="fs-4">{{ bn.age }}</td>
-              <td class="fs-4">{{ bn.phone }}</td>
-              <td class="fs-4">{{ bn.address }}</td>
-              <td class="fs-4">{{ bn.email }}</td>
+            <tr *ngFor="let bn of DSBenhNhan.items"  style="cursor: pointer;">
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.fullName }}</td>
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ convertGender(bn.gender) }}</td>
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.age }}</td>
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.phone }}</td>
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.address }}</td>
+              <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.email }}</td>
               <td class="fs-4">
                 <button type="button" class="btn btn-sm btn-primary" (click)="chonBenhNhanDeSua(bn)" >Sửa</button>
                 &nbsp;&nbsp;

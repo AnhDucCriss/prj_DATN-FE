@@ -24,6 +24,9 @@ import { ThemthuocComponent } from './quanlykhothuoc/themthuoc/themthuoc.compone
 import { SuathuocComponent } from './quanlykhothuoc/suathuoc/suathuoc.component';
 import { DsthuocComponent } from './quanlykhothuoc/dsthuoc/dsthuoc.component';
 import { QuanlyhosokhambenhComponent } from './quanlyhosokhambenh/quanlyhosokhambenh.component';
+import { ThemhskhambenhComponent } from './quanlyhosokhambenh/themhskhambenh/themhskhambenh.component';
+import { SuahskhambenhComponent } from './quanlyhosokhambenh/suahskhambenh/suahskhambenh.component';
+import { DshskhambenhComponent } from './quanlyhosokhambenh/dshskhambenh/dshskhambenh.component';
 
 @NgModule({
   imports: [
@@ -60,6 +63,8 @@ import { QuanlyhosokhambenhComponent } from './quanlyhosokhambenh/quanlyhosokham
     SuathuocComponent,
     DsthuocComponent,
     QuanlyhosokhambenhComponent,
+    SuahskhambenhComponent,
+    DshskhambenhComponent,
   ],
   
 })

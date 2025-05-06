@@ -1,0 +1,22 @@
+.transparent-button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .transparent-button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Hover hiện nền tròn mờ */
+  }
+  
+  .transparent-button:active {
+    background-color: rgba(0, 0, 0, 0.1); /* Click sâu hơn chút */
+  }
+  
+  .transparent-button i {
+    font-size: 18px; /* Icon to vừa phải */
+  }
+  

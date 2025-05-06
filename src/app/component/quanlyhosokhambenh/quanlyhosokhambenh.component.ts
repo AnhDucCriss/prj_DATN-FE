@@ -8,8 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 export class QuanlyhosokhambenhComponent {
   constructor(private route: ActivatedRoute) {}
 
-ngOnInit() {
-  const patientId = this.route.snapshot.paramMap.get('id');
-  // Gọi API lấy hồ sơ bệnh nhân với ID này
-}
+  ngOnInit() {
+    const patientId = this.route.snapshot.paramMap.get('id');
+  
+    this.route.queryParams.subscribe(params => {
+      const fullName = params['name'];
+      console.log('ID bệnh nhân:', patientId);
+      console.log('Tên bệnh nhân:', fullName);
+    });
+  }
+
 }

@@ -1,0 +1,83 @@
+<div class="card w-100">
+    <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
+      <h2 class="card-title mb-0 fw-bold">Danh sách hồ sơ khám bệnh của bệnh nhân {{ fullName }}</h2>
+    </div>
+  
+    <div class="card-body">
+      <form class="row g-2 align-items-center justify-content-start mb-3">
+        <div class="col-auto">
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Tìm theo tên bác sĩ điều trị..." 
+            [(ngModel)]="doctorName"
+            name="trieuChung"
+          />
+        </div>
+        <div class="col-auto">
+          <input 
+            type="date" 
+            class="form-control" 
+            [(ngModel)]="ngayKham"
+            name="ngayKham"
+          />
+        </div>
+        <div class="col-auto">
+          <button 
+            type="button" 
+            class="btn btn-primary"
+            (click)="timKiemHSKB()">
+            <i class="bi bi-search"></i> Tìm kiếm
+          </button>
+        </div>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-middle text-nowrap">
+            <thead>
+              <tr>
+                <th class="text-dark font-medium fs-4">Ngày khám</th>
+                <th class="text-dark font-medium fs-4">Triệu chứng</th>
+                <th class="text-dark font-medium fs-4">Chuẩn đoán</th>
+                <th class="text-dark font-medium fs-4">Ghi chú</th>
+                <th class="text-dark font-medium fs-4">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hs of danhSachHSKB.items">
+                <td class="fs-4">{{ hs.examinationDate | date:'dd/MM/yyyy' }}</td>
+                <td class="fs-4">{{ hs.symptoms }}</td>
+                <td class="fs-4">{{ hs.diagnosis }}</td>
+                <td class="fs-4">{{ hs.note }}</td>
+                <td class="fs-4">
+                  <button type="button" class="btn btn-sm btn-primary" (click)="xemChiTiet(hs.id)">Xem</button>
+                  &nbsp;&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="xoaHSKB(hs.id)">Xoá</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <!-- Phân trang -->
+        <div class="d-flex justify-content-center align-items-center mt-3">
+          <button class="btn transparent-button" [disabled]="pageNumber === 1" (click)="taiLaiDanhSach(1)">
+            <i class="bi bi-chevron-double-left"></i>
+          </button>
+          <button class="btn transparent-button" [disabled]="pageNumber === 1" (click)="taiLaiDanhSach(pageNumber - 1)">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <span class="mx-2">Trang {{ pageNumber }} của {{ totalPages }}</span>
+          <button class="btn transparent-button" [disabled]="pageNumber === totalPages" (click)="taiLaiDanhSach(pageNumber + 1)">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+          <button class="btn transparent-button" [disabled]="pageNumber === totalPages" (click)="taiLaiDanhSach(totalPages)">
+            <i class="bi bi-chevron-double-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

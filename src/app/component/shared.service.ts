@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:44316/api';
+  private readonly APIUrl = 'https://localhost:7201/api';
 
   constructor(private http: HttpClient) {}
 
@@ -210,6 +210,41 @@ export class SharedService {
       headers: this.getAuthHeaders(),
       
     });
+  }
+  //#endregion
+
+  //#region Quản lý hồ sơ khám bệnh
+  
+
+  // Xoá hồ sơ theo ID
+  delete(medicalRecordId: string): Observable<any> {
+    return this.http.delete(`${this.APIUrl}/${medicalRecordId}`);
+  }
+
+  // (Tuỳ chọn) Lấy chi tiết hồ sơ khám bệnh
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.APIUrl}/${id}`);
+  }
+
+  // (Tuỳ chọn) Tạo hồ sơ mới
+  create(data: any): Observable<any> {
+    return this.http.post(this.APIUrl, data);
+  }
+  getMedicalRecordsByPatientId(patientId: string, pageNumber: number, pageSize: number): Observable<any> {
+    return this.http.post(`${this.APIUrl}/MedicalRecord/get-by-patientId/${patientId}`, {
+      
+      pageNumber,
+      pageSize
+    });
+  }
+  searchMedicalRecordsByPatientId(patientId: string, body: any): Observable<any> {
+    return this.http.post(`${this.APIUrl}/MedicalRecord/search/${patientId}`, {
+      body
+    });
+  }
+  // (Tuỳ chọn) Cập nhật hồ sơ
+  update(id: string, data: any): Observable<any> {
+    return this.http.put(`${this.APIUrl}/${id}`, data);
   }
   //#endregion
 }
