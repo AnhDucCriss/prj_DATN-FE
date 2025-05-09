@@ -70,11 +70,30 @@ export class DshskhambenhComponent implements OnInit {
     });
   }
 
+  suaHSKB(medicalRecordId: string): void {
+    
+  }
   xemChiTiet(medicalRecordId: string): void {
     this.router.navigate([`/hoso-khambenh/chi-tiet`, medicalRecordId]);
   }
 
   xoaHSKB(medicalRecordId: string): void {
+    if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
+      this.service.delete(medicalRecordId).subscribe(() => {
+        alert('Xoá thành công');
+        this.taiLaiDanhSach(this.pageNumber);
+      });
+    }
+  }
+  xemHoaDon(medicalRecordId: string): void {
+    if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
+      this.service.delete(medicalRecordId).subscribe(() => {
+        alert('Xoá thành công');
+        this.taiLaiDanhSach(this.pageNumber);
+      });
+    }
+  }
+  xemDonThuoc(medicalRecordId: string): void {
     if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
       this.service.delete(medicalRecordId).subscribe(() => {
         alert('Xoá thành công');

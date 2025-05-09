@@ -62,8 +62,10 @@ import { DshskhambenhComponent } from './quanlyhosokhambenh/dshskhambenh/dshskha
     ThemthuocComponent,
     SuathuocComponent,
     DsthuocComponent,
+
     QuanlyhosokhambenhComponent,
     SuahskhambenhComponent,
+    ThemhskhambenhComponent,
     DshskhambenhComponent,
   ],
   

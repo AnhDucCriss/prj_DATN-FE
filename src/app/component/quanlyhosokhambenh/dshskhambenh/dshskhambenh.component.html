@@ -1,6 +1,7 @@
 <div class="card w-100">
     <div class="border-bottom p-3 d-flex justify-content-between align-items-center">
       <h2 class="card-title mb-0 fw-bold">Danh sách hồ sơ khám bệnh của bệnh nhân {{ fullName }}</h2>
+      <app-themhskhambenh (reloadEvent)="taiLaiDanhSach()"></app-themhskhambenh>
     </div>
   
     <div class="card-body">
@@ -40,22 +41,26 @@
             <thead>
               <tr>
                 <th class="text-dark font-medium fs-4">Ngày khám</th>
+                <th class="text-dark font-medium fs-4">Bác sĩ điều trị</th>
                 <th class="text-dark font-medium fs-4">Triệu chứng</th>
                 <th class="text-dark font-medium fs-4">Chuẩn đoán</th>
-                <th class="text-dark font-medium fs-4">Ghi chú</th>
                 <th class="text-dark font-medium fs-4">Thao tác</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let hs of danhSachHSKB.items">
                 <td class="fs-4">{{ hs.examinationDate | date:'dd/MM/yyyy' }}</td>
+                <td class="fs-4">{{ hs.doctorName }}</td>
                 <td class="fs-4">{{ hs.symptoms }}</td>
-                <td class="fs-4">{{ hs.diagnosis }}</td>
-                <td class="fs-4">{{ hs.note }}</td>
+                <td class="fs-4">{{ hs.conclusion }}</td>
                 <td class="fs-4">
-                  <button type="button" class="btn btn-sm btn-primary" (click)="xemChiTiet(hs.id)">Xem</button>
+                  <button type="button" class="btn btn-sm btn-primary" (click)="suaHSKB(hs.id)">Sửa</button>
                   &nbsp;&nbsp;
                   <button type="button" class="btn btn-danger btn-sm" (click)="xoaHSKB(hs.id)">Xoá</button>
+                  &nbsp;&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="xemDonThuoc(hs.id)">Đơn thuốc</button>
+                  &nbsp;&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="xemHoaDon(hs.id)">Hoá đơn</button>
                 </td>
               </tr>
             </tbody>
