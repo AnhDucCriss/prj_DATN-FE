@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:7201/api';
+  private readonly APIUrl = 'https://localhost:44316/api';
 
   constructor(private http: HttpClient) {}
 
@@ -227,8 +227,10 @@ export class SharedService {
   }
 
   // (Tuỳ chọn) Tạo hồ sơ mới
-  create(data: any): Observable<any> {
-    return this.http.post(this.APIUrl, data);
+  themHSKB(val: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/MedicalRecord/create`, val, {
+      headers: this.getAuthHeaders()
+    });
   }
   getMedicalRecordsByPatientId(patientId: string, pageNumber: number, pageSize: number): Observable<any> {
     return this.http.post(`${this.APIUrl}/MedicalRecord/get-by-patientId/${patientId}`, {

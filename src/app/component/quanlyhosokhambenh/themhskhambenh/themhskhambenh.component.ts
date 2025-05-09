@@ -30,28 +30,20 @@ export class ThemhskhambenhComponent {
   
     }
     addHSKB() {
-      var val = {
-        newHSKB:this.newHSKB
-      };
-      
       
       const val1 = {
         patientId: this.patientId,
-        examinationDate: this.newHSKB.examinationDate,
         doctorName: this.newHSKB.doctorName,
         symptoms: this.newHSKB.symptoms,
         conclusion: this.newHSKB.conclusion,
         
       };
-      this.service.themBenhNhan(val1).subscribe(res =>{
+      this.service.themHSKB(val1).subscribe(res =>{
         console.log(this.newHSKB); // Kiểm tra trước khi gửi API
-        alert('Thêm bệnh nhân thành công');
+        alert(res.message);
         this.reloadEvent.emit();
-        console.log('Thêm bệnh nhân thành công', res);
         this.dongModal.emit();
       });
-  
-      
     } 
    
     close() {
