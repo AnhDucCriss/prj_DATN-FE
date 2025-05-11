@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 import { LoginComponent } from './login/login.component';
 import { QuanlyhosokhambenhComponent } from './component/quanlyhosokhambenh/quanlyhosokhambenh.component';
+import { DonthuocComponent } from './component/quanlyhosokhambenh/donthuoc/donthuoc.component';
+import { HoadonComponent } from './component/quanlyhosokhambenh/hoadon/hoadon.component';
 
 
 
@@ -37,6 +39,14 @@ export const Approutes: Routes = [
       {
         path: 'hoso-khambenh/:id',
         component: QuanlyhosokhambenhComponent
+      },
+      {
+        path: 'donthuoc/:id',
+        component: DonthuocComponent
+      },
+      {
+        path: 'hoadon/:id',
+        component: HoadonComponent
       }
     ]
   },

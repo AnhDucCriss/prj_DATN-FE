@@ -11,14 +11,6 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/quanlytaikhoan',
-    title: 'Quản lý tài khoản',
-    icon: 'bi bi-people', // Quản lý tài khoản => nhóm người dùng
-    class: '',
-    extralink: false,
-    submenu: []
-  },
-  {
     path: '/component/quanlybenhnhan',
     title: 'Quản lý bệnh nhân',
     icon: 'bi bi-hospital', // Biểu tượng bệnh viện => bệnh nhân
@@ -42,7 +34,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-  
+  {
+    path: '/component/quanlytaikhoan',
+    title: 'Quản lý tài khoản',
+    icon: 'bi bi-people', // Quản lý tài khoản => nhóm người dùng
+    class: '',
+    extralink: false,
+    submenu: []
+  },
   {
     path: '/about',
     title: 'About',

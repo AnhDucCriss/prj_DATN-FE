@@ -1,0 +1,64 @@
+
+<div class="card w-100">
+    <div class="border-bottom p-3">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2">
+            <li class="breadcrumb-item text-muted">
+            <a [routerLink]="['/component/quanlybenhnhan']" class="text-decoration-none text-muted">Danh sách bệnh nhân</a>
+            </li>
+            <li class="breadcrumb-separator mx-1"> &gt; </li>
+            <li class="breadcrumb-item text-muted">
+            <a (click)="quayLai()" class="text-decoration-none text-muted" style="cursor: pointer;">Danh sách hồ sơ khám bệnh</a>
+            </li>
+            <li class="breadcrumb-separator mx-1"> &gt; </li>
+            <li class="breadcrumb-item active fw-semibold" aria-current="page">
+            Hoá đơn
+            </li>
+        </ol>
+        </nav>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+            <h2 class="fw-bold mb-1" style="font-size: 30px;">Hoá đơn</h2>
+            <p class="text-muted mb-0">Hoá đơn của hồ sơ đã khám của bệnh nhân</p>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card p-5 shadow" style="min-width: 500px; max-width: 700px; width: 100%;">
+            <h4 class="text-center fw-bold mb-4">Hóa đơn</h4>
+            <div class="row mb-3">
+                <div class="col-6 fw-semibold">Tên bệnh nhân:</div>
+                <div class="col-6">Nguyễn Văn A</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 fw-semibold">Ngày khám:</div>
+                <div class="col-6">20/04/2025</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 fw-semibold">Bác sĩ điều trị:</div>
+                <div class="col-6">BS. Trần Thị A</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 fw-semibold">Kết luận:</div>
+                <div class="col-6">Sốt xuất huyết</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 fw-semibold">Tổng tiền:</div>
+                <div class="col-6">1.000.000 VNĐ</div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-6 fw-semibold">Trạng thái thanh toán:</div>
+                <div class="col-6">Đã thanh toán</div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-danger me-3">Cập nhật</button>
+                <button class="btn btn-primary">In hoá đơn</button>
+            </div>
+        </div>
+    </div>
+
+</div>

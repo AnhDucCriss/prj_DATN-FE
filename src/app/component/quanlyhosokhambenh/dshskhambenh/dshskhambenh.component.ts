@@ -101,4 +101,11 @@ export class DshskhambenhComponent implements OnInit {
       });
     }
   }
+
+  goToInvoice(hsId: string) {
+    this.router.navigate(['hoadon', hsId])
+  }
+  goToPresciption(hsId: string) {
+    this.router.navigate(['donthuoc', hsId])
+  }
 }

@@ -1,0 +1,71 @@
+<div class="card w-100">
+  <div class="border-bottom p-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-2">
+        <li class="breadcrumb-item text-muted">
+          <a [routerLink]="['/component/quanlybenhnhan']" class="text-decoration-none text-muted">Danh sách bệnh nhân</a>
+        </li>
+        <li class="breadcrumb-separator mx-1"> &gt; </li>
+        <li class="breadcrumb-item text-muted">
+          <a (click)="quayLai()" class="text-decoration-none text-muted" style="cursor: pointer;">Danh sách hồ sơ khám bệnh</a>
+        </li>
+        <li class="breadcrumb-separator mx-1"> &gt; </li>
+        <li class="breadcrumb-item active fw-semibold" aria-current="page">
+          Đơn thuốc
+        </li>
+      </ol>
+    </nav>
+
+    <h2 class="fw-bold mb-1" style="font-size: 30px;">Đơn thuốc</h2>
+    <p class="text-muted mb-0">Thông tin đơn thuốc chi tiết</p>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="card p-5 shadow" style="min-width: 600px; max-width: 800px; width: 100%;">
+      <h4 class="text-center fw-bold mb-4">Đơn thuốc</h4>
+
+      <div class="row mb-2">
+        <div class="col-6 fw-semibold">Tên bệnh nhân:</div>
+        <div class="col-6">Nguyễn Văn A</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-6 fw-semibold">Ngày khám:</div>
+        <div class="col-6">20/04/2025</div>
+      </div>
+
+      <!-- Danh sách thuốc -->
+      <div class="border p-3 my-3">
+        <h6 class="fw-bold">Danh sách thuốc:</h6>
+        <table class="table table-bordered mb-0">
+          <thead class="table-light text-center">
+            <tr>
+              <th>Tên thuốc</th>
+              <th>Số lượng</th>
+              <th>Đơn vị</th>
+              <th>Đơn giá</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td>ABC</td>
+              <td>10</td>
+              <td>Viên</td>
+              <td>1.000 đ</td>
+            </tr>
+            <!-- Bạn có thể thêm các dòng thuốc khác ở đây -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-6 fw-semibold">Tổng tiền:</div>
+        <div class="col-6 text-end">1.000.000 VNĐ</div>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-danger me-3">Cập nhật danh sách thuốc</button>
+        <button class="btn btn-primary">Thêm thuốc</button>
+      </div>
+    </div>
+  </div>
+</div>
