@@ -1,32 +1,5 @@
-<!-- ============================================================== -->
-<!-- toggle and nav items -->
-<!-- ============================================================== -->
-<!-- <ul class="navbar-nav float-start me-auto">
-  <li class="nav-item">
-    <a class="nav-link waves-effect waves-dark" href="/dashboard"> Starter </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link waves-effect waves-dark" href="/about"> About </a>
-  </li>
-  <!-- ============================================================== -->
-  <!-- create new -->
-  <!-- ============================================================== -->
-  <!-- <li class="nav-item" ngbDropdown>
 
-    <a type="button" class="nav-link btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-      Create New
-    </a>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button ngbDropdownItem>Action - 1</button>
-      <button ngbDropdownItem>Another Action</button>
-      <button ngbDropdownItem>Something else is here</button>
-    </div>
-  </li>
-</ul> --> 
-<!-- ============================================================== -->
-<!-- Right side toggle and nav items -->
-<!-- ============================================================== -->
-<ul class="navbar-nav float-end">
+<ul class="navbar-nav bg-dark float-end">
   <!-- ============================================================== -->
   <!-- User profile and search -->
   <!-- ============================================================== -->
@@ -41,7 +14,7 @@
       <h6 class="mb-1 text-success">🎉 Chúc mừng!</h6>
       <p class="text-muted mb-2" style="font-size: 14px;">Bạn đã đăng nhập thành công</p>
       <div class="dropdown-divider"></div>
-      <a class="btn btn-danger w-100" href="/login">Đăng xuất</a>
+      <a class="btn btn-dark w-100" (click)="logout()">Đăng xuất</a>
     </div>
   </li>
   <!-- ============================================================== -->

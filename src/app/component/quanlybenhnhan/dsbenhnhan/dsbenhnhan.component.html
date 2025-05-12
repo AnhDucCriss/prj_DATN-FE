@@ -29,7 +29,7 @@
       <div class="col-auto">
         <button 
           type="button" 
-          class="btn btn-primary"
+          class="btn btn-dark"
           (click)="timKiemBenhNhan()">
           <i class="bi bi-search"></i> Tìm kiếm
         </button>
@@ -61,7 +61,7 @@
               <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.address }}</td>
               <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.email }}</td>
               <td class="fs-4">
-                <button type="button" class="btn btn-sm btn-primary" (click)="chonBenhNhanDeSua(bn)" >Sửa</button>
+                <button type="button" class="btn btn-dark btn-sm " (click)="chonBenhNhanDeSua(bn)" >Sửa</button>
                 &nbsp;&nbsp;
                 <button type="button" class="btn btn-danger btn-sm" (click)="xoaBenhNhan(bn.id)" >Xoá</button>
               </td>

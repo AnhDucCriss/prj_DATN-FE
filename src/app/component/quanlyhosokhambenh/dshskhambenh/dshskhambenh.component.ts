@@ -108,4 +108,19 @@ export class DshskhambenhComponent implements OnInit {
   goToPresciption(hsId: string) {
     this.router.navigate(['donthuoc', hsId])
   }
+
+  dangSua: boolean = false;
+  HSDangSua: any = null;
+
+  chonBenhNhanDeSua(bn: any): void {
+    this.HSDangSua = bn;
+    this.dangSua = true;
+    console.log(this.HSDangSua);
+  }
+
+  dongModalSua(): void {
+    this.dangSua = false;
+    console.log('Đóng modal sửa');
+  }
+
 }

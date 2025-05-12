@@ -30,7 +30,7 @@
             class="form-control" 
             placeholder="Tìm theo tên bác sĩ điều trị..." 
             [(ngModel)]="doctorName"
-            name="trieuChung"
+            name="doctorName"
           />
         </div>
         <div class="col-auto">
@@ -44,7 +44,7 @@
         <div class="col-auto">
           <button 
             type="button" 
-            class="btn btn-primary"
+            class="btn btn-dark"
             (click)="timKiemHSKB()">
             <i class="bi bi-search"></i> Tìm kiếm
           </button>
@@ -72,13 +72,13 @@
                 <td class="fs-4">{{ hs.symptoms }}</td>
                 <td class="fs-4">{{ hs.conclusion }}</td>
                 <td class="fs-4">
-                  <button type="button" class="btn btn-sm btn-primary" (click)="suaHSKB(hs.id)">Sửa</button>
+                  <button type="button" class="btn btn-dark btn-sm" (click)="suaHSKB(hs.id)">Sửa</button>
                   &nbsp;&nbsp;
                   <button type="button" class="btn btn-danger btn-sm" (click)="xoaHSKB(hs.id)">Xoá</button>
                   &nbsp;&nbsp;
-                  <button type="button" class="btn btn-danger btn-sm" (click)="goToPresciption(hs.id)">Đơn thuốc</button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="goToPresciption(hs.id)">Đơn thuốc</button>
                   &nbsp;&nbsp;
-                  <button type="button" class="btn btn-danger btn-sm" (click)="goToInvoice(hs.id)">Hoá đơn</button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="goToInvoice(hs.id)">Hoá đơn</button>
                 </td>
               </tr>
             </tbody>
@@ -104,3 +104,9 @@
       </div>
     </div>
   </div>
+  <app-suabenhnhan 
+  *ngIf="dangSua"
+  [benhNhan]="HSDangSua"
+  (dongModal)="dongModalSua()"
+  (reloadEvent)="taiLaiDanhSach(); dongModalSua()">
+</app-suabenhnhan> 

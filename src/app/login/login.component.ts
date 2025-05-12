@@ -23,7 +23,7 @@ export class LoginComponent {
       next: (res) => {
         localStorage.setItem('token', res.accessToken); // <-- phải là accessToken
         localStorage.setItem('username', res.userName);
-        this.router.navigate(['/component/quanlytaikhoan']);
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.errorMessage = 'Tên đăng nhập hoặc mật khẩu không đúng.';
