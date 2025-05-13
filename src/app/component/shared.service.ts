@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:44316/api';
+  private readonly APIUrl = 'https://localhost:7201/api';
 
   constructor(private http: HttpClient) {}
 
@@ -217,8 +217,12 @@ export class SharedService {
   
 
   // Xoá hồ sơ theo ID
-  delete(medicalRecordId: string): Observable<any> {
-    return this.http.delete(`${this.APIUrl}/${medicalRecordId}`);
+  deleteMedicalRecord(medicalRecordId: string): Observable<any> {
+    return this.http.delete(`${this.APIUrl}/${medicalRecordId}`,
+      {
+        headers: this.getAuthHeaders()
+      }
+    );
   }
 
   // (Tuỳ chọn) Lấy chi tiết hồ sơ khám bệnh
@@ -234,19 +238,39 @@ export class SharedService {
   }
   getMedicalRecordsByPatientId(patientId: string, pageNumber: number, pageSize: number): Observable<any> {
     return this.http.post(`${this.APIUrl}/MedicalRecord/get-by-patientId/${patientId}`, {
-      
       pageNumber,
       pageSize
+    }, {
+      headers: this.getAuthHeaders()
     });
   }
+
   searchMedicalRecordsByPatientId(patientId: string, body: any): Observable<any> {
-    return this.http.post(`${this.APIUrl}/MedicalRecord/search/${patientId}`, {
-      body
+    return this.http.post(`${this.APIUrl}/MedicalRecord/search/${patientId}`, body, {
+      headers: this.getAuthHeaders()
+    });
+  } 
+
+  // (Tuỳ chọn) Cập nhật hồ sơ
+  suaHSKhamBenh(id: string, data: any): Observable<any> {
+    return this.http.put(`${this.APIUrl}/MedicalRecord/update/${id}`, data, {
+      headers: this.getAuthHeaders(),
     });
   }
-  // (Tuỳ chọn) Cập nhật hồ sơ
-  update(id: string, data: any): Observable<any> {
-    return this.http.put(`${this.APIUrl}/${id}`, data);
-  }
+
   //#endregion
+
+  
+  getPrescriptionByMRID(medicalReocordId: string): Observable<any> {
+    return this.http.get(`${this.APIUrl}/Prescription/${medicalReocordId}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+  capNhatThuocTrongDon(data: any) {
+    return this.http.put<any>('/api/Prescription/update', data, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+
 }

@@ -26,46 +26,49 @@
 
       <div class="row mb-2">
         <div class="col-6 fw-semibold">Tên bệnh nhân:</div>
-        <div class="col-6">Nguyễn Văn A</div>
+        <div class="col-6">{{patientName}}</div>
       </div>
       <div class="row mb-2">
-        <div class="col-6 fw-semibold">Ngày khám:</div>
-        <div class="col-6">20/04/2025</div>
+        <div class="col-6 fw-semibold">Bác sĩ điều trị:</div>
+        <div class="col-6">{{doctorName}}</div>
       </div>
 
       <!-- Danh sách thuốc -->
-      <div class="border p-3 my-3">
-        <h6 class="fw-bold">Danh sách thuốc:</h6>
-        <table class="table table-bordered mb-0">
-          <thead class="table-light text-center">
-            <tr>
-              <th>Tên thuốc</th>
-              <th>Số lượng</th>
-              <th>Đơn vị</th>
-              <th>Đơn giá</th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr>
-              <td>ABC</td>
-              <td>10</td>
-              <td>Viên</td>
-              <td>1.000 đ</td>
-            </tr>
-            <!-- Bạn có thể thêm các dòng thuốc khác ở đây -->
-          </tbody>
-        </table>
-      </div>
+      <table class="table align-middle text-nowrap">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Tên thuốc</th>
+            <th class="text-dark font-medium fs-4">Đơn vị</th>
+            <th class="text-dark font-medium fs-4">Số lượng</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dt of danhSachThuoc.items">
+            <td class="fs-4">{{ dt.medicine.medicineName }}</td>
+            <td class="fs-4">{{ dt.medicine.unit }}</td>
+            <td class="fs-4">{{ dt.quantity }}</td>
+            <!-- <td class="fs-4">
+              <button type="button" class="btn btn-dark btn-sm" (click)="chonThuocDeSua(dt)">Sửa</button>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-danger btn-sm" (click)="xoaThuoc(dt.id)">Xoá</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
 
-      <div class="row mb-4">
-        <div class="col-6 fw-semibold">Tổng tiền:</div>
-        <div class="col-6 text-end">1.000.000 VNĐ</div>
-      </div>
 
       <div class="text-center">
-        <button class="btn btn-danger me-3">Cập nhật danh sách thuốc</button>
-        <button class="btn btn-primary">Thêm thuốc</button>
+        <button class="btn btn-info" (click)="hienSuaDonThuoc = true">Cập nhật danh sách thuốc</button> &nbsp;
+        <button class="btn btn-secondary">Thêm đơn thuốc</button>
       </div>
     </div>
   </div>
 </div>
+<app-suadonthuockhambenh
+  *ngIf="hienSuaDonThuoc"
+  [danhSachThuoc]="danhSachThuoc.items"
+  [medicalRecordId]="hsId"
+  (dong)="hienSuaDonThuoc = false"
+  (taiLai)="taiLaiDuLieu()"
+></app-suadonthuockhambenh>

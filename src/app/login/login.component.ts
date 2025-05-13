@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login() {
-    this.http.post<any>('https://localhost:44316/api/login', this.loginData)
+    this.http.post<any>('https://localhost:7201/api/login', this.loginData)
     .subscribe({
       next: (res) => {
         localStorage.setItem('token', res.accessToken); // <-- phải là accessToken

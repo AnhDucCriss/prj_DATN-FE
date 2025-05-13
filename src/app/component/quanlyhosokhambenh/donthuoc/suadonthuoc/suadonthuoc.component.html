@@ -1,0 +1,29 @@
+<div class="card p-3">
+  <h4 class="text-center">Cập nhật danh sách thuốc</h4>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Tên thuốc</th>
+        <th>Đơn vị</th>
+        <th>Số lượng</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let thuoc of danhSachThuoc; let i = index">
+        <td><input class="form-control" [(ngModel)]="thuoc.medicine.medicineName"></td>
+        <td><input class="form-control" [(ngModel)]="thuoc.unit"></td>
+        <td><input class="form-control" type="number" [(ngModel)]="thuoc.quantity"></td>
+        <td>
+            <button class="btn btn-success btn-sm" (click)="luuMotThuoc(thuoc)">Lưu</button>&nbsp;
+            <button class="btn btn-danger btn-sm" (click)="xoaThuoc(i)">Xoá</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+    <div class="text-end">
+        <button class="btn btn-secondary me-2" (click)="dong.emit()">Đóng</button>&nbsp;
+        <button class="btn btn-success me-2" (click)="themThuocMoi()">Thêm thuốc</button>
+    </div>
+</div>

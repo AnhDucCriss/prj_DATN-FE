@@ -24,7 +24,8 @@ export class DshskhambenhComponent implements OnInit {
   // Tìm kiếm
   doctorName: string = '';
   ngayKham: string = '';
-
+  dangSua: boolean = false;
+  HSDangSua: any = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -43,11 +44,13 @@ export class DshskhambenhComponent implements OnInit {
 
   taiLaiDanhSach(page: number = 1): void {
     this.pageNumber = page;
-    this.service.getMedicalRecordsByPatientId(this.patientId, this.pageNumber, this.pageSize)
-  .subscribe(res => {
-    this.danhSachHSKB.items = res.items;
-    this.danhSachHSKB.totalRecords = res.totalRecords;
-  });
+      
+    this.service.getMedicalRecordsByPatientId(this.patientId, this.pageNumber,5)
+      .subscribe(res => {
+      this.danhSachHSKB.items = res.items;
+      this.danhSachHSKB.totalRecords = res.totalRecords;
+      this.totalPages = Math.ceil(res.totalRecords / res.pageSize);
+    });
   }
 
   timKiemHSKB(): void {
@@ -70,8 +73,10 @@ export class DshskhambenhComponent implements OnInit {
     });
   }
 
-  suaHSKB(medicalRecordId: string): void {
-    
+  suaHSKB(medicalRecordId: string, hs: any): void {
+    this.HSDangSua = hs;
+    this.dangSua = true;
+    console.log(this.HSDangSua);
   }
   xemChiTiet(medicalRecordId: string): void {
     this.router.navigate([`/hoso-khambenh/chi-tiet`, medicalRecordId]);
@@ -79,23 +84,7 @@ export class DshskhambenhComponent implements OnInit {
 
   xoaHSKB(medicalRecordId: string): void {
     if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
-      this.service.delete(medicalRecordId).subscribe(() => {
-        alert('Xoá thành công');
-        this.taiLaiDanhSach(this.pageNumber);
-      });
-    }
-  }
-  xemHoaDon(medicalRecordId: string): void {
-    if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
-      this.service.delete(medicalRecordId).subscribe(() => {
-        alert('Xoá thành công');
-        this.taiLaiDanhSach(this.pageNumber);
-      });
-    }
-  }
-  xemDonThuoc(medicalRecordId: string): void {
-    if (confirm('Bạn có chắc muốn xoá hồ sơ này?')) {
-      this.service.delete(medicalRecordId).subscribe(() => {
+      this.service.deleteMedicalRecord(medicalRecordId).subscribe(() => {
         alert('Xoá thành công');
         this.taiLaiDanhSach(this.pageNumber);
       });
@@ -107,15 +96,6 @@ export class DshskhambenhComponent implements OnInit {
   }
   goToPresciption(hsId: string) {
     this.router.navigate(['donthuoc', hsId])
-  }
-
-  dangSua: boolean = false;
-  HSDangSua: any = null;
-
-  chonBenhNhanDeSua(bn: any): void {
-    this.HSDangSua = bn;
-    this.dangSua = true;
-    console.log(this.HSDangSua);
   }
 
   dongModalSua(): void {

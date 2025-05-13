@@ -72,7 +72,7 @@
                 <td class="fs-4">{{ hs.symptoms }}</td>
                 <td class="fs-4">{{ hs.conclusion }}</td>
                 <td class="fs-4">
-                  <button type="button" class="btn btn-dark btn-sm" (click)="suaHSKB(hs.id)">Sửa</button>
+                  <button type="button" class="btn btn-dark btn-sm" (click)="suaHSKB(hs.id, hs)">Sửa</button>
                   &nbsp;&nbsp;
                   <button type="button" class="btn btn-danger btn-sm" (click)="xoaHSKB(hs.id)">Xoá</button>
                   &nbsp;&nbsp;
@@ -104,9 +104,9 @@
       </div>
     </div>
   </div>
-  <app-suabenhnhan 
+<app-suahskhambenh 
   *ngIf="dangSua"
-  [benhNhan]="HSDangSua"
+  [hoSo]="HSDangSua"
   (dongModal)="dongModalSua()"
   (reloadEvent)="taiLaiDanhSach(); dongModalSua()">
-</app-suabenhnhan> 
+</app-suahskhambenh> 

@@ -29,6 +29,7 @@ import { SuahskhambenhComponent } from './quanlyhosokhambenh/suahskhambenh/suahs
 import { DshskhambenhComponent } from './quanlyhosokhambenh/dshskhambenh/dshskhambenh.component';
 import { HoadonComponent } from './quanlyhosokhambenh/hoadon/hoadon.component';
 import { DonthuocComponent } from './quanlyhosokhambenh/donthuoc/donthuoc.component';
+import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/suadonthuoc.component';
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import { DonthuocComponent } from './quanlyhosokhambenh/donthuoc/donthuoc.compon
     DshskhambenhComponent,
     HoadonComponent,
     DonthuocComponent,
+    SuaDonThuocComponent
   ],
   
 })

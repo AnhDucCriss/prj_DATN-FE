@@ -1,1 +1,48 @@
-<p>suahskhambenh works!</p>
+<div class="modal fade show d-block" id="suaHoSoKhamBenhModal" aria-labelledby="updMedicalRecordModalLabel" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updMedicalRecordModalLabel">Sửa hồ sơ khám bệnh</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="capNhatHoSoKhamBenh()">
+            <div class="mb-3">
+                <label class="form-label">Ngày khám</label>
+                <input type="date" class="form-control" formControlName="examinationDate" />
+                <div *ngIf="form.get('examinationDate')?.invalid && form.get('examinationDate')?.touched" class="text-danger">
+                    Ngày khám không được để trống
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Triệu chứng</label>
+                <textarea class="form-control" formControlName="symptoms"></textarea>
+                <div *ngIf="form.get('symptom')?.invalid && form.get('symptoms')?.touched" class="text-danger">
+                Triệu chứng không được để trống
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Chuẩn đoán</label>
+                <textarea class="form-control" formControlName="conclusion"></textarea>
+                <div *ngIf="form.get('conclusion')?.invalid && form.get('conclusion')?.touched" class="text-danger">
+                Chuẩn đoán không được để trống
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tên bác sĩ điều trị</label>
+                <input type="text" class="form-control" formControlName="doctorName" />
+                <div *ngIf="form.get('doctorName')?.invalid && form.get('doctorName')?.touched" class="text-danger">
+                Tên bác sĩ điều trị không được để trống
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>
