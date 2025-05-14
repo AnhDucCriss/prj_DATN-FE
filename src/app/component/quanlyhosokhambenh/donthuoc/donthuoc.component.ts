@@ -61,6 +61,13 @@ export class DonthuocComponent {
   );
 }
 
-
+  taiLaiDonThuoc(): void {
+    
+    this.service.getPrescriptionByMRID(this.hsId)
+      .subscribe(res => {
+      this.danhSachThuoc = res.medicine;
+      
+    });
+  }
 
 }

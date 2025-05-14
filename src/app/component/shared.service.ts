@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:7201/api';
+  private readonly APIUrl = 'https://localhost:44316/api';
 
   constructor(private http: HttpClient) {}
 
@@ -218,7 +218,7 @@ export class SharedService {
 
   // Xoá hồ sơ theo ID
   deleteMedicalRecord(medicalRecordId: string): Observable<any> {
-    return this.http.delete(`${this.APIUrl}/${medicalRecordId}`,
+    return this.http.delete(`${this.APIUrl}/MedicalRecord/delete/${medicalRecordId}`,
       {
         headers: this.getAuthHeaders()
       }
@@ -272,5 +272,10 @@ export class SharedService {
     });
   }
 
+  themDonThuoc(val: any): Observable<any> {
+    return this.http.post<any>(`${this.APIUrl}/Prescription/create`, val, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
 }

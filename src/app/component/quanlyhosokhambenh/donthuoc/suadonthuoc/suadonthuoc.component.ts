@@ -1,17 +1,33 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  ViewChild,
+  AfterViewInit
+} from '@angular/core';
 import { SharedService } from '../../../shared.service';
 
 @Component({
   selector: 'app-suadonthuockhambenh',
   templateUrl: './suadonthuoc.component.html'
 })
-export class SuaDonThuocComponent {
+export class SuaDonThuocComponent implements AfterViewInit {
   @Input() danhSachThuoc: any[] = [];
-  @Input() medicalRecordId!: string; // cần để gọi lại đơn
+  @Input() medicalRecordId!: string;
+
   @Output() dong = new EventEmitter<void>();
-  @Output() taiLai = new EventEmitter<void>(); // thêm output để báo cha load lại
+  @Output() taiLai = new EventEmitter<void>();
+
+  @ViewChild('modalRef') modalRef!: ElementRef;
 
   constructor(private service: SharedService) {}
+
+  ngAfterViewInit() {
+    // Tự động focus hoặc thực hiện logic khi modal hiển thị (nếu cần)
+    // Có thể thêm logic nếu dùng Bootstrap modal JS (nếu cần)
+  }
 
   themThuocMoi() {
     this.danhSachThuoc.push({
@@ -27,7 +43,7 @@ export class SuaDonThuocComponent {
 
   luuMotThuoc(thuoc: any) {
     const request = {
-      id: thuoc.id, // cần ID để cập nhật
+      id: thuoc.id,
       quantity: thuoc.quantity,
       unit: thuoc.unit,
       medicineName: thuoc.medicine?.medicineName || thuoc.medicineName
@@ -36,12 +52,16 @@ export class SuaDonThuocComponent {
     this.service.capNhatThuocTrongDon(request).subscribe({
       next: () => {
         alert('Đã cập nhật thành công');
-        this.taiLai.emit(); // báo cha load lại dữ liệu
+        this.taiLai.emit();
       },
       error: (err) => {
         console.error(err);
         alert('Lỗi khi cập nhật thuốc');
       }
     });
+  }
+
+  close() {
+    this.dong.emit(); // ẩn modal từ cha
   }
 }

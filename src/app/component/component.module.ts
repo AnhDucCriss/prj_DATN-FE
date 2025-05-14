@@ -17,7 +17,7 @@ import { DsnhanvienComponent } from './quanlynhanvien/dsnhanvien/dsnhanvien.comp
 import { ThemnhanvienComponent } from './quanlynhanvien/themnhanvien/themnhanvien.component';
 import { SuanhanvienComponent } from './quanlynhanvien/suanhanvien/suanhanvien.component';
 import { QuanlydonthuocComponent } from './quanlydonthuoc/quanlydonthuoc.component';
-import { ThemdonthuocComponent } from './quanlydonthuoc/themdonthuoc/themdonthuoc.component';
+import { ThemdonthuocComponent } from './quanlyhosokhambenh/donthuoc/themdonthuoc/themdonthuoc.component';
 import { SuadonthuocComponent } from './quanlydonthuoc/suadonthuoc/suadonthuoc.component';
 import { QuanlykhothuocComponent } from './quanlykhothuoc/quanlykhothuoc.component';
 import { ThemthuocComponent } from './quanlykhothuoc/themthuoc/themthuoc.component';
