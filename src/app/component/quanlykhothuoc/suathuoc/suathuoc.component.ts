@@ -29,8 +29,8 @@ export class SuathuocComponent implements OnInit, OnChanges  {
         medicineName: [this.thuoc.medicineName, Validators.required],
         unit: [this.thuoc.unit, Validators.required],
         price: [this.thuoc.price, [Validators.required, Validators.min(0)]],
-        description: [this.thuoc.description, Validators.maxLength(255)],
         category: [this.thuoc.category, Validators.maxLength(50)],
+        quantity: [this.thuoc.quantity, Validators.min(0)],
       });
     }
   }
@@ -41,9 +41,9 @@ export class SuathuocComponent implements OnInit, OnChanges  {
         id: this.thuoc.id,
         medicineName: this.form.value.medicineName,
         unit: this.form.value.unit,
-        price: this.form.value.price,
-        description: this.form.value.description,
         category: this.form.value.category,
+        price: this.form.value.price,
+        quantity: this.form.value.quantity
       };
 
       this.service.suaThuoc(updatedThuoc.id, updatedThuoc).subscribe(res => {

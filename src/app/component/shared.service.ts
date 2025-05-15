@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:44316/api';
+  private readonly APIUrl = 'https://localhost:7201/api';
 
   constructor(private http: HttpClient) {}
 
@@ -266,16 +266,16 @@ export class SharedService {
       headers: this.getAuthHeaders()
     });
   }
-  capNhatThuocTrongDon(data: any) {
-    return this.http.put<any>('/api/Prescription/update', data, {
-      headers: this.getAuthHeaders()
-    });
-  }
-
+  
   themDonThuoc(val: any): Observable<any> {
     return this.http.post<any>(`${this.APIUrl}/Prescription/create`, val, {
       headers: this.getAuthHeaders()
     });
   }
 
+  updatePrescriptionDetails(data: any) {
+    return this.http.post<any>(`${this.APIUrl}/Prescription/update-details`, data, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }

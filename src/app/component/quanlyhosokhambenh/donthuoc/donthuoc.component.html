@@ -46,7 +46,7 @@
         <tbody>
           <tr *ngFor="let dt of danhSachThuoc.items">
             <td class="fs-4">{{ dt.medicine.medicineName }}</td>
-            <td class="fs-4">{{ dt.medicine.unit }}</td>
+            <td class="fs-4">{{ dt.unit }}</td>
             <td class="fs-4">{{ dt.quantity }}</td>
             <!-- <td class="fs-4">
               <button type="button" class="btn btn-dark btn-sm" (click)="chonThuocDeSua(dt)">Sửa</button>
@@ -60,6 +60,8 @@
 
       <div class="text-center">
         <button class="btn btn-info" (click)="hienSuaDonThuoc = true">Cập nhật danh sách thuốc</button> &nbsp;
+        <button class="btn btn-secondary" >In đơn thuốc</button> &nbsp;
+
       </div>
     </div>
   </div>

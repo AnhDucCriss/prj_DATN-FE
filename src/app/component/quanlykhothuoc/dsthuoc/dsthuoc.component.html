@@ -28,7 +28,7 @@
 
       <div class="col-auto">
         <button 
-          type="button" 
+          type="submit" 
           class="btn btn-dark"
           (click)="timKiemThuoc()">
           <i class="bi bi-search"></i> Tìm kiếm
@@ -46,8 +46,8 @@
               <th class="text-dark font-medium fs-4">Tên thuốc</th>
               <th class="text-dark font-medium fs-4">Đơn vị</th>
               <th class="text-dark font-medium fs-4">Loại thuốc</th>
-              <th class="text-dark font-medium fs-4">Mô tả</th>
               <th class="text-dark font-medium fs-4">Giá</th>
+              <th class="text-dark font-medium fs-4">Số lượng còn</th>
               <th class="text-dark font-medium fs-4">Thao tác</th>
             </tr>
           </thead>
@@ -56,8 +56,8 @@
               <td class="fs-4">{{ thuoc.medicineName }}</td>
               <td class="fs-4">{{ thuoc.unit }}</td>
               <td class="fs-4">{{ thuoc.category }}</td>
-              <td class="fs-4">{{ thuoc.description }}</td>
               <td class="fs-4">{{ thuoc.price | number:'1.0-0' }} đ</td>
+              <td class="fs-4">{{ thuoc.quantity }}</td>
               <td class="fs-4">
                 <button type="button" class="btn btn-sm btn-primary" (click)="chonThuocDeSua(thuoc)">Sửa</button>
                 &nbsp;&nbsp;

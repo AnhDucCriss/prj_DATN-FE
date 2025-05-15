@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuadonthuocComponent } from './suadonthuoc.component';
+import { SuaDonThuocComponent } from './suadonthuoc.component';
 
 describe('SuadonthuocComponent', () => {
-  let component: SuadonthuocComponent;
-  let fixture: ComponentFixture<SuadonthuocComponent>;
+  let component: SuaDonThuocComponent;
+  let fixture: ComponentFixture<SuaDonThuocComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SuadonthuocComponent]
+      declarations: [SuaDonThuocComponent]
     });
-    fixture = TestBed.createComponent(SuadonthuocComponent);
+    fixture = TestBed.createComponent(SuaDonThuocComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

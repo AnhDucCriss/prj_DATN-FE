@@ -16,9 +16,7 @@ import { QuanlynhanvienComponent } from './quanlynhanvien/quanlynhanvien.compone
 import { DsnhanvienComponent } from './quanlynhanvien/dsnhanvien/dsnhanvien.component';
 import { ThemnhanvienComponent } from './quanlynhanvien/themnhanvien/themnhanvien.component';
 import { SuanhanvienComponent } from './quanlynhanvien/suanhanvien/suanhanvien.component';
-import { QuanlydonthuocComponent } from './quanlydonthuoc/quanlydonthuoc.component';
-import { ThemdonthuocComponent } from './quanlyhosokhambenh/donthuoc/themdonthuoc/themdonthuoc.component';
-import { SuadonthuocComponent } from './quanlydonthuoc/suadonthuoc/suadonthuoc.component';
+
 import { QuanlykhothuocComponent } from './quanlykhothuoc/quanlykhothuoc.component';
 import { ThemthuocComponent } from './quanlykhothuoc/themthuoc/themthuoc.component';
 import { SuathuocComponent } from './quanlykhothuoc/suathuoc/suathuoc.component';
@@ -57,10 +55,6 @@ import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/
     ThemnhanvienComponent,
     SuanhanvienComponent,
 
-    QuanlydonthuocComponent,
-    ThemdonthuocComponent,
-    SuadonthuocComponent,
-    
     QuanlykhothuocComponent,
     ThemthuocComponent,
     SuathuocComponent,
@@ -70,9 +64,11 @@ import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/
     SuahskhambenhComponent,
     ThemhskhambenhComponent,
     DshskhambenhComponent,
+
     HoadonComponent,
     DonthuocComponent,
-    SuaDonThuocComponent
+    SuaDonThuocComponent,
+    
   ],
   
 })

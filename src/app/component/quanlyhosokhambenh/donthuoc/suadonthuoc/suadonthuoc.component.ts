@@ -16,7 +16,6 @@ import { SharedService } from '../../../shared.service';
 export class SuaDonThuocComponent implements AfterViewInit {
   @Input() danhSachThuoc: any[] = [];
   @Input() medicalRecordId!: string;
-
   @Output() dong = new EventEmitter<void>();
   @Output() taiLai = new EventEmitter<void>();
 
@@ -41,27 +40,33 @@ export class SuaDonThuocComponent implements AfterViewInit {
     this.danhSachThuoc.splice(index, 1);
   }
 
-  luuMotThuoc(thuoc: any) {
-    const request = {
-      id: thuoc.id,
-      quantity: thuoc.quantity,
-      unit: thuoc.unit,
-      medicineName: thuoc.medicine?.medicineName || thuoc.medicineName
-    };
-
-    this.service.capNhatThuocTrongDon(request).subscribe({
-      next: () => {
-        alert('Đã cập nhật thành công');
-        this.taiLai.emit();
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Lỗi khi cập nhật thuốc');
-      }
-    });
-  }
-
+  
   close() {
-    this.dong.emit(); // ẩn modal từ cha
+    // Chuẩn bị dữ liệu gửi API theo định dạng
+    
+    const body = {
+      medicalRecordId: this.medicalRecordId,
+      items: this.danhSachThuoc.map(x => ({
+        medicineName: x.medicine.medicineName,
+        quantity: x.quantity
+      }))
+    };
+    
+    this.service.updatePrescriptionDetails(body)
+      .subscribe({
+        next: (res) => {
+          alert('Cập nhật danh sách thuốc thành công!');
+          this.taiLai.emit();   // Gọi reload sau khi cập nhật thành công
+        },
+
+        error: (err) => {
+          const message = err.error?.message || 'Cập nhật danh sách thuốc thất bại!';
+          alert(message);
+          this.dong.emit();
+        }
+      }); 
+  }
+  closeV2() {
+    this.dong.emit();
   }
 }
