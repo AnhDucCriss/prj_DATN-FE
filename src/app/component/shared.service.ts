@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:7201/api';
+  private readonly APIUrl = 'https://localhost:44316/api';
 
   constructor(private http: HttpClient) {}
 
@@ -210,6 +210,12 @@ export class SharedService {
       headers: this.getAuthHeaders(),
       
     });
+  }
+  getAllMedicineName(): Observable<any> {
+    return this.http.get<any[]>(this.APIUrl + '/Medicine/get-all-name', {   
+      headers: this.getAuthHeaders(),
+    }
+    )
   }
   //#endregion
 

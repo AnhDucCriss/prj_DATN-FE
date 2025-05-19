@@ -30,6 +30,7 @@ export class SuaDonThuocComponent implements AfterViewInit {
 
   themThuocMoi() {
     this.danhSachThuoc.push({
+      medicineId: null,
       medicine: { medicineName: '' },
       unit: '',
       quantity: 0
@@ -63,10 +64,36 @@ export class SuaDonThuocComponent implements AfterViewInit {
           const message = err.error?.message || 'Cập nhật danh sách thuốc thất bại!';
           alert(message);
           this.dong.emit();
+          this.taiLai.emit();  
         }
       }); 
+      this.taiLai.emit();  
   }
   closeV2() {
     this.dong.emit();
+    this.taiLai.emit();
   }
+  danhSachMedicine: any[] = [];
+  ngOnInit() {
+  this.service.getAllMedicineName().subscribe(res => {
+    this.danhSachMedicine = res;
+
+    // Gán medicineId nếu chưa có
+    this.danhSachThuoc.forEach(thuoc => {
+      if (!thuoc.id && thuoc.medicine?.id) {
+        thuoc.id = thuoc.medicine.id;
+      }
+    });
+  });
+  console.log(this.danhSachThuoc); 
+}
+onThuocChange(index: number) {
+  const selectedId = this.danhSachThuoc[index].medicineId;
+  const selectedMedicine = this.danhSachMedicine.find(m => m.id === selectedId);
+  if (selectedMedicine) {
+    this.danhSachThuoc[index].medicine = selectedMedicine;
+  }
+}
+
+
 }

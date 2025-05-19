@@ -21,6 +21,7 @@ import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { LoginComponent } from './login/login.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -42,6 +43,7 @@ import { LoginComponent } from './login/login.component';
     FullComponent,
     NavigationComponent,
     SidebarComponent,
+    NgSelectModule
     
   ],
   providers: [

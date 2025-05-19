@@ -28,7 +28,7 @@ import { DshskhambenhComponent } from './quanlyhosokhambenh/dshskhambenh/dshskha
 import { HoadonComponent } from './quanlyhosokhambenh/hoadon/hoadon.component';
 import { DonthuocComponent } from './quanlyhosokhambenh/donthuoc/donthuoc.component';
 import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/suadonthuoc.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   imports: [
     CommonModule,
@@ -36,10 +36,12 @@ import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-
+    NgSelectModule,
     RouterModule
   ],
   declarations: [
+
+
     QuanlytaikhoanComponent,
     ThemsuataikhoanComponent,
     DstaikhoanComponent,

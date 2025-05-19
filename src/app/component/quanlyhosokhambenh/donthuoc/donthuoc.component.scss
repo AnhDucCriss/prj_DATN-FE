@@ -1,0 +1,14 @@
+::ng-deep ng-select .ng-dropdown-panel {
+  background-color: rgb(238, 245, 249) !important;
+  color: black; /* nếu cần chỉnh màu chữ */
+  margin-top: 10px;
+}
+
+::ng-deep ng-select .ng-dropdown-panel .ng-option {
+  background-color: rgb(238, 245, 249) ;
+  padding-left: 10px;
+}
+
+::ng-deep ng-select .ng-dropdown-panel .ng-option:hover {
+  background-color: rgb(37, 169, 246) ; /* màu khi hover */
+}

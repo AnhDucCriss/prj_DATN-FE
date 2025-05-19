@@ -25,17 +25,15 @@ export class DonthuocComponent {
     this.hsId = this.route.snapshot.paramMap.get('id') || '';
     this.taiLaiDuLieu();
   }
-  prescriptionId: string = ''; // hoặc null
-  
+
   taiLaiDuLieu(): void {
     
+      
     this.service.getPrescriptionByMRID(this.hsId)
       .subscribe(res => {
       this.patientName = res.patientName;
       this.doctorName = res.doctorName;
-      this.prescriptionId = res.id;
       this.danhSachThuoc.items = res.prescriptionDetails;
-       this.hienSuaDonThuoc = false;
       
     });
   }
@@ -49,6 +47,20 @@ export class DonthuocComponent {
 
   hienSuaDonThuoc = false;
 
+  capNhatThuoc(thuoc: any) {
+  const updateRequest = {
+    id: thuoc.id, // ID của thuốc trong đơn
+    quantity: thuoc.quantity,
+    unit: thuoc.unit,
+    medicineName: thuoc.medicineName ?? thuoc.medicine?.medicineName // tùy dữ liệu
+  };
+
+  this.service.updatePrescriptionDetails(updateRequest).subscribe(
+    res => console.log("Cập nhật thành công"),
+    err => console.error("Lỗi khi cập nhật", err)
+  );
+}
+
   
-  
+
 }
