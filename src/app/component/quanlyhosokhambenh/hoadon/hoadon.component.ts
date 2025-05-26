@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 })
 export class HoadonComponent {
   hsId: string = "";
+  patientName: string = '';
+  doctorName: string = '';
   constructor(
       private route: ActivatedRoute,
       private router: Router,

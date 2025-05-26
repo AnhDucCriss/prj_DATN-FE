@@ -284,4 +284,12 @@ export class SharedService {
       headers: this.getAuthHeaders()
     });
   }
+
+  exportPrescription(medicalRecordId: string) {
+    return this.http.get(`${this.APIUrl}/Prescription/export-pdf/${medicalRecordId}`, {
+      headers: this.getAuthHeaders(),
+      responseType: 'blob' // 👈 bắt buộc để nhận file PDF
+    });
+  }
+
 }

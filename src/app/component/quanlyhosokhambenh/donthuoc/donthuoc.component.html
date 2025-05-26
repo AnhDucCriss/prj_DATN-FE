@@ -48,11 +48,7 @@
             <td class="fs-4">{{ dt.medicine.medicineName }}</td>
             <td class="fs-4">{{ dt.unit }}</td>
             <td class="fs-4">{{ dt.quantity }}</td>
-            <!-- <td class="fs-4">
-              <button type="button" class="btn btn-dark btn-sm" (click)="chonThuocDeSua(dt)">Sửa</button>
-              &nbsp;&nbsp;
-              <button type="button" class="btn btn-danger btn-sm" (click)="xoaThuoc(dt.id)">Xoá</button>
-            </td> -->
+            
           </tr>
         </tbody>
       </table>
@@ -60,7 +56,7 @@
 
       <div class="text-center">
         <button class="btn btn-info" (click)="hienSuaDonThuoc = true">Cập nhật danh sách thuốc</button> &nbsp;
-        <button class="btn btn-secondary" >In đơn thuốc</button> &nbsp;
+        <button class="btn btn-secondary" (click)="inDonThuoc()"  >In đơn thuốc</button> &nbsp;
 
       </div>
     </div>
