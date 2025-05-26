@@ -26,43 +26,57 @@
         </div>
 
     </div>
-    <div class="d-flex justify-content-center align-items-center mt-5">
-        <div class="card p-5 shadow" style="min-width: 500px; max-width: 700px; width: 100%;">
-            <h4 class="text-center fw-bold mb-4">Hóa đơn</h4>
-            <div class="row mb-3">
-                <div class="col-6 fw-semibold">Tên bệnh nhân:</div>
+    <div class="d-flex justify-content-center align-items-center mt-5" *ngIf="invoiceData">
+    <div class="card p-5 shadow" style="min-width: 500px; max-width: 700px; width: 100%;">
+        <h4 class="text-center fw-bold mb-4">Hóa đơn</h4>
 
-                <div class="col-6">Nguyễn Văn An</div>
+        <div class="row mb-3">
+        <div class="col-6 fw-semibold">Tên bệnh nhân:</div>
+        <div class="col-6">{{ invoiceData.patientName }}</div>
+        </div>
 
-                <div class="col-6"></div>
+        <div class="row mb-3">
+        <div class="col-6 fw-semibold">Ngày khám:</div>
+        <div class="col-6">{{ invoiceData.examinationDate | date:'dd/MM/yyyy' }}</div>
+        </div>
 
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 fw-semibold">Ngày khám:</div>
-                <div class="col-6">20/04/2025</div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 fw-semibold">Bác sĩ điều trị:</div>
-                <div class="col-6">Trần Thị Anh</div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 fw-semibold">Kết luận:</div>
-                <div class="col-6">Sốt xuất huyết</div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 fw-semibold">Tổng tiền:</div>
-                <div class="col-6">1.000.000 VNĐ</div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-6 fw-semibold">Trạng thái thanh toán:</div>
-                <div class="col-6">Đã thanh toán</div>
-            </div>
+        <div class="row mb-3">
+        <div class="col-6 fw-semibold">Bác sĩ điều trị:</div>
+        <div class="col-6">{{ invoiceData.doctorName }}</div>
+        </div>
 
-            <div class="text-center">
-                <button class="btn btn-danger me-3">Cập nhật</button>
-                <button class="btn btn-primary">In hoá đơn</button>
+        <div class="row mb-3">
+        <div class="col-6 fw-semibold">Kết luận:</div>
+        <div class="col-6">{{ invoiceData.conclusion }}</div>
+        </div>
+
+        <div class="row mb-3">
+        <div class="col-6 fw-semibold">Tổng tiền:</div>
+        <div class="col-6">{{ invoiceData.totalAmout | number }} VNĐ</div>
+        </div>
+
+        <div class="row mb-4 align-items-center">
+            <div class="col-6 fw-semibold">Trạng thái thanh toán:</div>
+            <div class="col-6">
+                <span [ngClass]="invoiceData.paymentStatus ? 'text-success fw-bold' : 'text-danger fw-bold'">
+                {{ invoiceData.paymentStatus ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+                </span>
             </div>
         </div>
+
+
+        <div class="text-center">
+        <!-- <button class="btn btn-primary" (click)="printInvoice()">In hoá đơn</button> -->
+        </div>
     </div>
+    </div>
+
+        <!-- Nếu muốn hiển thị thông báo đang load -->
+        <div class="text-center mt-5" *ngIf="!invoiceData">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
 
 </div>

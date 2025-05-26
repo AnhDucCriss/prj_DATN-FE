@@ -292,4 +292,16 @@ export class SharedService {
     });
   }
 
+  getInvoiceByMRID(medicalReocordId: string): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/Invoice/by-medical-record/${medicalReocordId}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  updatePaymentStatus(medicalRecordId: string) {
+    return this.http.put(`${this.APIUrl}/Invoice/update-payment-status/${medicalRecordId}`, null, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
 }

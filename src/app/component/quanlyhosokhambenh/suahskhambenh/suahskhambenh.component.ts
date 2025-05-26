@@ -46,10 +46,16 @@ export class SuahskhambenhComponent {
 
       };
      
-      this.service.suaHSKhamBenh(updatedHoSo.id, updatedHoSo).subscribe(res => {
-        alert("Cập nhật thành công");
-        this.reloadEvent.emit();
-        this.dongModal.emit();
+      this.service.suaHSKhamBenh(updatedHoSo.id, updatedHoSo).subscribe({
+        next: (res) => {
+          alert(res.message);  // Trường hợp thành công
+          this.reloadEvent.emit();
+          this.dongModal.emit();
+        },
+        error: (err) => {
+          console.error('Lỗi trả về từ API:', err);
+          alert(err.error?.message || 'Có lỗi xảy ra!');
+        }
       });
     }
   }
