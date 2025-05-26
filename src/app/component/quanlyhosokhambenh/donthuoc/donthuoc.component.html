@@ -45,7 +45,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let dt of danhSachThuoc.items">
-            <td class="fs-4">{{ dt.medicine.medicineName }}</td>
+            <td class="fs-4">{{ dt.medicine?.medicineName }}</td>
             <td class="fs-4">{{ dt.unit }}</td>
             <td class="fs-4">{{ dt.quantity }}</td>
             <!-- <td class="fs-4">

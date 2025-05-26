@@ -57,6 +57,7 @@ export class SuaDonThuocComponent implements AfterViewInit {
       .subscribe({
         next: (res) => {
           alert('Cập nhật danh sách thuốc thành công!');
+          this.dong.emit();
           this.taiLai.emit();   // Gọi reload sau khi cập nhật thành công
         },
 

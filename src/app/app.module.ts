@@ -40,11 +40,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     NgbModule,
     RouterModule.forRoot(Approutes, { useHash: false }),
-    FullComponent,
-    NavigationComponent,
-    SidebarComponent,
     NgSelectModule
-    
   ],
   providers: [
     {
