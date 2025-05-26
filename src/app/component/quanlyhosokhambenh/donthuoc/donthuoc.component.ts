@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../shared.service';
 import { Location } from '@angular/common';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-donthuoc',
   templateUrl: './donthuoc.component.html',
@@ -61,6 +62,11 @@ export class DonthuocComponent {
   );
 }
 
-  
+  inDonThuoc() {
+  this.service.exportPrescription(this.hsId).subscribe(blob => {
+    const fileName = `DonThuocCua_${this.patientName}.pdf`;
+    saveAs(blob, fileName); 
+  });
+}
 
 }
