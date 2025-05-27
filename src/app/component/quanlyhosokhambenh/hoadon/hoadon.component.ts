@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../shared.service';
 import { Location } from '@angular/common';
 import { Observer } from 'rxjs';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-hoadon',
   templateUrl: './hoadon.component.html',
@@ -14,6 +14,15 @@ export class HoadonComponent {
   hsId: string = "";
   patientName: string = '';
   doctorName: string = '';
+
+  convertMethod(method: number): string {
+    return method === 0 ? 'Chuyển khoản' : method === 1 ? 'Tiền mặt' : 'Khác';
+  }
+
+  convertStatus(status: number): string {
+    return status === 0 ? 'Chưa thanh toán' : status === 1 ? 'Đã thanh toán' : 'Khác';
+  }
+
   constructor(
       private route: ActivatedRoute,
       private router: Router,
@@ -39,45 +48,51 @@ export class HoadonComponent {
   }
  
   
-  togglePaymentStatus(event: any) {
-    const confirmed = confirm("Xác nhận cập nhật trạng thái thanh toán?");
-    if (!confirmed) {
-      event.target.checked = this.invoiceData.paymentStatus; // huỷ thì revert lại
-      return;
-    }
-
-    this.service.updatePaymentStatus(this.hsId).subscribe(
-      () => {
-        // giả sử backend tự set về true
-        this.loadInvoice(); // Gọi lại hàm lấy dữ liệu
+  loadInvoice() {
+    this.service.getInvoiceByMRID(this.hsId).subscribe(
+      res => {
+        this.invoiceData = res;
       },
       error => {
-        alert("Cập nhật thất bại");
-        event.target.checked = this.invoiceData.paymentStatus; // reset nếu lỗi
+        console.error('Lỗi khi tải hóa đơn:', error);
       }
     );
   }
-loadInvoice() {
-  this.service.getInvoiceByMRID(this.hsId).subscribe(
-    res => {
-      this.invoiceData = res;
-    },
-    error => {
-      console.error('Lỗi khi tải hóa đơn:', error);
-    }
-  );
-}
 
+  printInvoice() {
+    this.service.exportInvoice(this.hsId).subscribe(blob => {
+          const fileName = `HoaDonCua_${this.invoiceData.patientName}.pdf`;
+          saveAs(blob, fileName); 
+    });
+  } 
 
   quayLai(): void {
     this.location.back();
   }
+
+  dangSua: boolean = false;
+  hoaDonDangSua: any = null;
+  hoSoID: string = this.hsId;
+  chonHoaDonDeSua(hsId: any): void {
+    this.hoaDonDangSua = hsId;
+    this.dangSua = true;
+    
+  }
+
+  dongModalSua(): void {
+    this.dangSua = false;
+    console.log('Đóng modal sửa');
+  }
+
+
 }
 export interface Invoice {
+  medicalRecordID: string;
   patientName: string;
   doctorName: string;
   examinationDate: string; // hoặc Date nếu muốn parse
   conclusion: string;
   totalAmout: number;
-  paymentStatus: boolean;
+  paymentMethod: number;
+  paymentStatus: number;
 }

@@ -1,0 +1,41 @@
+<div class="modal fade show d-block" id="suaHoaDonModal" aria-labelledby="updInvoiceModalLabel" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updInvoiceModalLabel">Cập nhật hóa đơn</h5>
+        <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="capNhatHoaDon()">
+          
+            <div class="mb-3">
+            <label class="form-label">Phương thức thanh toán</label>
+            <select class="form-select" formControlName="paymentMethod">
+              <option [ngValue]="0">Chuyển khoản</option>
+              <option [ngValue]="1">Tiền mặt</option>
+            </select>
+            <div *ngIf="form.get('paymentStatus')?.invalid && form.get('paymentStatus')?.touched" class="text-danger">
+              Vui lòng chọn phương thức thanh toán
+            </div>
+          </div>
+          
+
+          <div class="mb-3">
+            <label class="form-label">Trạng thái thanh toán</label>
+            <select class="form-select" formControlName="paymentStatus">
+              <option [ngValue]="0">Chưa thanh toán</option>
+              <option [ngValue]="1">Đã thanh toán</option>
+            </select>
+            <div *ngIf="form.get('paymentStatus')?.invalid && form.get('paymentStatus')?.touched" class="text-danger">
+              Vui lòng chọn trạng thái thanh toán
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show"></div>

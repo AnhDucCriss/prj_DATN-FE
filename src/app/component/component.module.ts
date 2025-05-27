@@ -29,6 +29,7 @@ import { HoadonComponent } from './quanlyhosokhambenh/hoadon/hoadon.component';
 import { DonthuocComponent } from './quanlyhosokhambenh/donthuoc/donthuoc.component';
 import { SuaDonThuocComponent } from './quanlyhosokhambenh/donthuoc/suadonthuoc/suadonthuoc.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SuahoadonComponent } from './quanlyhosokhambenh/hoadon/suahoadon/suahoadon.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -70,6 +71,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HoadonComponent,
     DonthuocComponent,
     SuaDonThuocComponent,
+    SuahoadonComponent,
     
   ],
   

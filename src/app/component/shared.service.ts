@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:7201/api';
+  private readonly APIUrl = 'https://localhost:44316/api';
 
   constructor(private http: HttpClient) {}
 
@@ -288,7 +288,7 @@ export class SharedService {
   exportPrescription(medicalRecordId: string) {
     return this.http.get(`${this.APIUrl}/Prescription/export-pdf/${medicalRecordId}`, {
       headers: this.getAuthHeaders(),
-      responseType: 'blob' // 👈 bắt buộc để nhận file PDF
+      responseType: 'blob' 
     });
   }
 
@@ -298,10 +298,16 @@ export class SharedService {
     });
   }
 
-  updatePaymentStatus(medicalRecordId: string) {
-    return this.http.put(`${this.APIUrl}/Invoice/update-payment-status/${medicalRecordId}`, null, {
-      headers: this.getAuthHeaders()
+  exportInvoice(medicalRecordId: string) {
+    return this.http.get(`${this.APIUrl}/Invoice/export-pdf/${medicalRecordId}`, {
+      headers: this.getAuthHeaders(),
+      responseType: 'blob' 
     });
   }
 
+  suaHoaDon(updatedInvoice: any): Observable<any> {
+    return this.http.put<any>(`${this.APIUrl}/Invoice/update-payment-status`, updatedInvoice, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
