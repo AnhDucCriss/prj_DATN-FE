@@ -1,40 +1,44 @@
-export interface Product {
-    image: string,
-    uname: string,
-    gmail: string,
-    productName: string,
-    status: string,
-    weeks: number,
-    budget: string
+// Interface cho response từ API
+export interface RevenueStatsResponse {
+  totalRevenuePaid: number;
+  totalRevenueUnpaid: number;
+  totalInvoicesPaid: number;
+  totalInvoicesUnpaid: number;
 }
 
-export const TopSelling: Product[] = [
+// Interface cho hiển thị trong table
+export interface RevenueStatsDisplay {
+  label: string;
+  value: string;
+  count: number;
+  status: 'success' | 'warning' | 'info' | 'danger';
+  icon: string;
+}
 
+// Hàm chuyển đổi dữ liệu từ API response sang format hiển thị
+export function mapRevenueStatsToDisplay(data: RevenueStatsResponse): RevenueStatsDisplay[] {
+  return [
     {
-        image: 'assets/images/users/user1.jpg',
-        uname: 'Nguyễn Văn An',
-        gmail: 'annguyen@gmail.com',
-        productName: 'Flexy React',
-        status: 'danger',
-        weeks: 35,
-        budget: '95'
+      label: 'Doanh thu đã thanh toán',
+      value: formatCurrency(data.totalRevenuePaid),
+      count: data.totalInvoicesPaid,
+      status: 'success',
+      icon: 'ti-wallet'
     },
     {
-        image: 'assets/images/users/user2.jpg',
-        uname: 'Hanna Gover',
-        gmail: 'hgover@gmail.com',
-        productName: 'Landing pro React',
-        status: 'info',
-        weeks: 35,
-        budget: '84'
-    },
-    {
-        image: 'assets/images/users/user3.jpg',
-        uname: 'Hanna Gover',
-        gmail: 'hgover@gmail.com',
-        productName: 'Elite React	',
-        status: 'warning',
-        weeks: 35,
-        budget: '16'
+      label: 'Doanh thu chưa thanh toán',
+      value: formatCurrency(data.totalRevenueUnpaid),
+      count: data.totalInvoicesUnpaid,
+      status: 'warning',
+      icon: 'ti-credit-card'
     }
-]
+  ];
+}
+
+// Hàm format tiền tệ
+export function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  }).format(amount);
+}

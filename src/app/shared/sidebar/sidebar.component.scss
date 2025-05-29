@@ -1,0 +1,253 @@
+// Variables
+$primary-color: #93a4f1;
+$secondary-color: #dbc9ee;
+$text-color: #2C3E50;
+$text-light: #8E92A4;
+$white: #ffffff;
+$sidebar-width: 250px; 
+$border-radius: 12px;
+$transition: all 0.3s ease;
+
+// Mixins
+@mixin gradient-bg($from: $primary-color, $to: $secondary-color) {
+  background: linear-gradient(135deg, $from 0%, $to 100%);
+}
+
+@mixin glass-morphism($opacity: 0.95) {
+  background: rgba($white, $opacity);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($white, 0.2);
+}
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin animation-delay($count: 6) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  @include gradient-bg();
+  min-height: 100vh;
+}
+
+// Sidebar Navigation
+.sidebar-nav {
+  margin-top: 64px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: $sidebar-width; // Sẽ tự động sử dụng 250px
+  max-width: $sidebar-width; // Đảm bảo không vượt quá 250px
+  height: 100vh;
+  @include glass-morphism();
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  transition: $transition;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($primary-color, 0.3);
+    border-radius: 4px;
+  }
+}
+
+#sidebarnav {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  margin: 6px 12px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  transition: $transition;
+  opacity: 0;
+  padding-left: 4px; // Thêm dòng này
+  animation: slideInLeft 0.6s ease forwards;
+
+  @include animation-delay();
+
+  &:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba($primary-color, 0.2);
+  }
+
+  &.active {
+    @include gradient-bg();
+    box-shadow: 0 6px 25px rgba($primary-color, 0.4);
+
+    .sidebar-link {
+      color: $white;
+
+      i {
+        color: $white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+.nav-small-cap {
+  padding: 12px 20px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $text-light;
+  border-bottom: 1px solid rgba($text-light, 0.1);
+  margin-bottom: 8px;
+}
+.sidebar-item.active[_ngcontent-ng-c1552648786] {
+    background: linear-gradient(135deg, #93a4f1 0%, #dbc9ee 100%);
+    box-shadow: 0 6px 25px rgba(147, 164, 241, 0.4);
+    width: 220px;
+}
+.sidebar-link {
+  @include flex-center();
+  padding: 12px 16px;
+  text-decoration: none;
+  color: $text-color;
+  font-weight: 500;
+  transition: $transition;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba($primary-color, 0.1), rgba($secondary-color, 0.1));
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: $primary-color;
+    transform: translateX(3px);
+    
+
+    &::before {
+      width: 100%;
+    }
+
+    i {
+      transform: scale(1.1);
+      text-shadow: 0 2px 8px rgba($primary-color, 0.3);
+    }
+  }
+
+  i {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+    margin-right: 16px;
+    color: $primary-color;
+    transition: $transition;
+  }
+}
+
+.hide-menu {
+  font-size: 14px;
+  white-space: nowrap;
+  transition: $transition;
+}
+
+// Wave effect
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba($primary-color, 0.3);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+  }
+}
+
+// Animations
+@keyframes ripple {
+  to {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Main content (demo)
+.main-content {
+  margin-left: $sidebar-width; // Sẽ tự động sử dụng 250px
+  padding: 40px;
+  color: $white;
+}
+
+.demo-card {
+  @include glass-morphism(0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .sidebar-nav {
+    width: 100%;
+    max-width: 100%; // Trên mobile cho phép full width
+    transform: translateX(-100%);
+    z-index: 1000;
+
+    &.mobile-open {
+      transform: translateX(0);
+    }
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}

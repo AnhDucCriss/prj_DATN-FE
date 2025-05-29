@@ -1,27 +1,64 @@
+<!-- medical-records-summary.component.html -->
 <div class="card">
     <div class="card-body">
         <div class="d-md-flex align-items-center">
             <div>
-                <h4 class="card-title">Doanh thu</h4>
-                
+                <h4 class="card-title">Thống kê hồ sơ khám bệnh (6 tháng gần nhất)</h4>
+                <p class="text-muted mb-0">Số lượng hồ sơ và bệnh nhân khám theo tháng</p>
+            </div>
+            <div class="ms-auto">
+                <button class="btn btn-sm btn-outline-success" 
+                        (click)="refreshData()" 
+                        [disabled]="isLoading">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Làm mới
+                </button>
             </div>
         </div>
-        <div class="row mt-4">
-            <!-- column -->
+        
+        <!-- Loading state -->
+        <div *ngIf="isLoading" class="text-center py-4">
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Đang tải...</span>
+            </div>
+        </div>
+        
+        <!-- Error state -->
+        <div *ngIf="hasError && !isLoading" class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            Không thể tải dữ liệu hồ sơ khám bệnh. Đang hiển thị dữ liệu mặc định.
+        </div>
+        
+        <!-- Chart -->
+        <div class="row mt-4" *ngIf="!isLoading">
             <div class="col-lg-12">
                 <div>
                     <div class="d-flex flex-column w-100">
-                        <apx-chart [series]="salesChartOptions.series" [chart]="salesChartOptions.chart"
-                            [xaxis]="salesChartOptions.xaxis" [yaxis]="salesChartOptions.yaxis"
-                            [grid]="salesChartOptions.grid" [stroke]="salesChartOptions.stroke"
-                            [tooltip]="salesChartOptions.tooltip" [dataLabels]="salesChartOptions.dataLabels"
-                            [legend]="salesChartOptions.legend" [colors]="salesChartOptions.colors"
-                            [markers]="salesChartOptions.markers">
+                        <apx-chart [series]="medicalRecordsChartOptions.series" 
+                                   [chart]="medicalRecordsChartOptions.chart"
+                                   [xaxis]="medicalRecordsChartOptions.xaxis" 
+                                   [yaxis]="medicalRecordsChartOptions.yaxis"
+                                   [grid]="medicalRecordsChartOptions.grid" 
+                                   [stroke]="medicalRecordsChartOptions.stroke"
+                                   [tooltip]="medicalRecordsChartOptions.tooltip" 
+                                   [dataLabels]="medicalRecordsChartOptions.dataLabels"
+                                   [legend]="medicalRecordsChartOptions.legend" 
+                                   [colors]="medicalRecordsChartOptions.colors"
+                                   [markers]="medicalRecordsChartOptions.markers">
                         </apx-chart>
                     </div>
                 </div>
             </div>
-            <!-- column -->
+        </div>
+        
+        <!-- Summary info -->
+        <div class="row mt-3" *ngIf="!isLoading && !hasError">
+            <div class="col-12">
+                <small class="text-muted">
+                    <i class="fas fa-stethoscope"></i>
+                    Thống kê dựa trên ngày khám của các hồ sơ trong 6 tháng gần nhất
+                </small>
+            </div>
         </div>
     </div>
 </div>

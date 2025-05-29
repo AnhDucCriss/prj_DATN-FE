@@ -10,7 +10,8 @@ import { CommonModule, NgIf } from '@angular/common';
   selector: 'app-sidebar',
   standalone: true,
   imports:[RouterModule, CommonModule, NgIf],
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
   showMenu = '';

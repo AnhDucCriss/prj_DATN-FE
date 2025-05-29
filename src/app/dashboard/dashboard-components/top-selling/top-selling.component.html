@@ -1,36 +1,119 @@
 <div class="card">
-    <div class="card-body">
-        <!-- title -->
-                <h4 class="card-title">Danh sách bác sĩ có lượt khám nhiều nhất</h4>
-                
-            
-        <!-- title -->
-        <div class="table-responsive">
-            <table class="table align-middle">
-                <thead>
-                    <tr>
-                        <th class="text-dark font-medium fs-4">Tên bác sĩ</th>
-                        <th class="text-dark font-medium fs-4">Số hồ sơ đã làm việc</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let ts of topSelling'>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img [src]=ts.image alt="user" width="45" class="rounded-circle">
-                                <div class="ms-3">
-                                    <h5 class="mb-0 font-medium">{{ts.uname}}</h5>
-                                    <span class="text-muted">{{ts.gmail}}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h5 class="mb-0 fw-normal">{{ts.budget}}</h5>
-                        </td>
-                    </tr>              
-                </tbody>
-            </table>
+  <div class="card-body">
+    <!-- Title & Date Filter -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="card-title mb-0">Thống kê doanh thu</h4>
+      
+      <!-- Date Filter -->
+      <div class="d-flex gap-2">
+        <div class="form-group">
+          <label class="form-label">Từ ngày</label>
+          <input 
+            type="date" 
+            class="form-control form-control-sm" 
+            [(ngModel)]="fromDate"
+            (change)="onDateFilterChange()">
         </div>
+        <div class="form-group">
+          <label class="form-label">Đến ngày</label>
+          <input 
+            type="date" 
+            class="form-control form-control-sm" 
+            [(ngModel)]="toDate"
+            (change)="onDateFilterChange()">
+        </div>
+        <div class="form-group align-self-end">
+          <button 
+            class="btn btn-outline-secondary btn-sm" 
+            (click)="clearDateFilter()"
+            title="Xóa bộ lọc">
+            <i class="bi bi-arrow-clockwise"></i> Xóa bộ lọc
+          </button>
+        </div>
+      </div>
     </div>
-    
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Đang tải...</span>
+      </div>
+      <p class="mt-2 text-muted">Đang tải dữ liệu...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      <i class="ti-alert-circle me-2"></i>
+      {{ error }}
+    </div>
+
+    <!-- Revenue Stats Table -->
+    <div *ngIf="!loading && !error" class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Loại doanh thu</th>
+            <th class="text-dark font-medium fs-4">Số tiền</th>
+            <th class="text-dark font-medium fs-4">Số hóa đơn</th>
+            <th class="text-dark font-medium fs-4">Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stat of revenueStats">
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="avatar-sm bg-light rounded-circle d-flex align-items-center justify-content-center me-3">
+                  <i [class]="stat.icon + ' text-' + stat.status"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 font-medium">{{ stat.label }}</h6>
+                </div>
+              </div>
+            </td>
+            <td>
+              <h5 class="mb-0 fw-bold text-primary">{{ stat.value }}</h5>
+            </td>
+            <td>
+              <span class="badge bg-light text-dark fs-6">{{ stat.count }} hóa đơn</span>
+            </td>
+            <td>
+              <span 
+                class="badge fs-6"
+                [class]="'bg-' + stat.status">
+                {{ stat.status === 'success' ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Summary Cards -->
+    <div *ngIf="!loading && !error && revenueStats.length > 0" class="row mt-4">
+      <div class="col-md-6" *ngFor="let stat of revenueStats">
+        <div class="card border-start border-4" 
+             [class]="'border-' + stat.status">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="me-3">
+                <i [class]="stat.icon + ' display-6 text-' + stat.status"></i>
+              </div>
+              <div>
+                <h6 class="text-muted mb-1">{{ stat.label }}</h6>
+                <h4 class="mb-0">{{ stat.value }}</h4>
+                <small class="text-muted">{{ stat.count }} hóa đơn</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && !error && revenueStats.length === 0" class="text-center py-5">
+      <i class="ti-receipt display-4 text-muted"></i>
+      <h5 class="mt-3 text-muted">Không có dữ liệu</h5>
+      <p class="text-muted">Không tìm thấy dữ liệu doanh thu trong khoảng thời gian được chọn.</p>
+    </div>
+  </div>
 </div>
