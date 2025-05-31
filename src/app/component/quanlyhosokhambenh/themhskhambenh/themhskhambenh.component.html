@@ -10,20 +10,86 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="addHSKB()" #addHSKBForm="ngForm">
+        <form (ngSubmit)="addHSKB()" #addHSKBForm="ngForm" novalidate>
+          
+          <!-- Bác sĩ điều trị -->
           <div class="mb-3">
-            <label for="doctorName" class="form-label">Bác sĩ điều trị</label>
-            <input type="text" class="form-control" id="doctorName" name="doctorName" required [(ngModel)]="newHSKB.doctorName">
+            <label for="doctorName" class="form-label">Bác sĩ điều trị <span class="text-danger">*</span></label>
+            <select 
+              class="form-control" 
+              id="doctorName" 
+              name="doctorName" 
+              required 
+              [(ngModel)]="newHSKB.doctorName"
+              #doctorName="ngModel"
+              [class.is-invalid]="doctorName.invalid && (doctorName.dirty || doctorName.touched)"
+              [class.is-valid]="doctorName.valid && (doctorName.dirty || doctorName.touched)">
+              <option value="">-- Chọn bác sĩ --</option>
+              <option *ngFor="let doctor of doctors" [value]="doctor.fullName">
+                {{doctor.fullName}}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="doctorName.invalid && (doctorName.dirty || doctorName.touched)">
+              <div *ngIf="doctorName.errors?.['required']">Vui lòng chọn bác sĩ điều trị</div>
+            </div>
           </div>
+
+          <!-- Triệu chứng -->
           <div class="mb-3">
-            <label for="symptoms" class="form-label">Triệu chứng</label>
-            <input type="text" class="form-control" id="symptoms" name="symptoms" required [(ngModel)]="newHSKB.symptoms">
+            <label for="symptoms" class="form-label">Triệu chứng <span class="text-danger">*</span></label>
+            <textarea 
+              class="form-control" 
+              id="symptoms" 
+              name="symptoms" 
+              required 
+              minlength="1"
+              maxlength="500"
+              rows="3"
+              placeholder="Mô tả triệu chứng của bệnh nhân..."
+              [(ngModel)]="newHSKB.symptoms"
+              #symptoms="ngModel"
+              [class.is-invalid]="symptoms.invalid && (symptoms.dirty || symptoms.touched)"
+              [class.is-valid]="symptoms.valid && (symptoms.dirty || symptoms.touched)">
+            </textarea>
+            <div class="invalid-feedback" *ngIf="symptoms.invalid && (symptoms.dirty || symptoms.touched)">
+              <div *ngIf="symptoms.errors?.['required']">Vui lòng nhập triệu chứng</div>
+              <div *ngIf="symptoms.errors?.['minlength']">Triệu chứng phải có ít nhất 5 ký tự</div>
+              <div *ngIf="symptoms.errors?.['maxlength']">Triệu chứng không được vượt quá 500 ký tự</div>
+            </div>
+            <div class="form-text">
+              <small class="text-muted">{{symptoms.value?.length || 0}}/500 ký tự</small>
+            </div>
           </div>
+
+          <!-- Số điện thoại -->
           <div class="mb-3">
-            <label for="conclusion" class="form-label">Số điện thoại</label>
-            <input type="text" class="form-control" id="conclusion" name="conclusion" required [(ngModel)]="newHSKB.conclusion">
+            <label for="conclusion" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+            <input 
+              type="tel" 
+              class="form-control" 
+              id="conclusion" 
+              name="conclusion" 
+              required 
+              pattern="^(0|\+84)[0-9]{9,10}$"
+              placeholder="VD: 0123456789 hoặc +84123456789"
+              [(ngModel)]="newHSKB.conclusion"
+              #conclusion="ngModel"
+              [class.is-invalid]="conclusion.invalid && (conclusion.dirty || conclusion.touched)"
+              [class.is-valid]="conclusion.valid && (conclusion.dirty || conclusion.touched)">
+            <div class="invalid-feedback" *ngIf="conclusion.invalid && (conclusion.dirty || conclusion.touched)">
+              <div *ngIf="conclusion.errors?.['required']">Vui lòng nhập số điện thoại</div>
+              <div *ngIf="conclusion.errors?.['pattern']">Số điện thoại không đúng định dạng (VD: 0123456789)</div>
+            </div>
           </div>
-          <button type="submit" class="btn btn-dark w-100">Thêm hồ sơ</button>
+
+          <!-- Submit button -->
+          <button 
+            type="submit" 
+            class="btn btn-dark w-100"
+            [disabled]="addHSKBForm.invalid || isSubmitting">
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+            {{isSubmitting ? 'Đang xử lý...' : 'Thêm hồ sơ'}}
+          </button>
         </form>
       </div>
     </div>

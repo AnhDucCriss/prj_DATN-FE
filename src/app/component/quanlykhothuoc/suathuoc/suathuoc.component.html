@@ -7,29 +7,77 @@
             </div>
             <div class="modal-body">
                 <form [formGroup]="form" (ngSubmit)="capNhatThuoc()">
-                    <div class="mb-3">
-                        <label class="form-label">Tên thuốc</label>
-                        <input class="form-control" formControlName="medicineName">
+                <div class="mb-3">
+                    <label class="form-label">Tên thuốc</label>
+                    <input
+                    class="form-control"
+                    placeholder="Nhập tên thuốc"
+                    formControlName="medicineName"
+                    />
+                    <div class="text-danger" *ngIf="form.get('medicineName')?.invalid && form.get('medicineName')?.touched">
+                    Tên thuốc là bắt buộc và tối đa 100 ký tự.
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Đơn vị</label>
-                        <input class="form-control" formControlName="unit">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Đơn vị</label>
+                    <input
+                    class="form-control"
+                    placeholder="Ví dụ: viên, hộp, lọ..."
+                    formControlName="unit"
+                    />
+                    <div class="text-danger" *ngIf="form.get('unit')?.invalid && form.get('unit')?.touched">
+                    Đơn vị tối đa 50 ký tự.
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Loại thuốc</label>
-                        <input class="form-control" formControlName="category">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Loại thuốc</label>
+                    <input
+                    class="form-control"
+                    placeholder="Nhập loại thuốc (nếu có)"
+                    formControlName="category"
+                    />
+                    <div class="text-danger" *ngIf="form.get('category')?.invalid && form.get('category')?.touched">
+                    Loại thuốc tối đa 50 ký tự.
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Đơn giá</label>
-                        <input type="number" class="form-control" formControlName="price">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Đơn giá</label>
+                    <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Nhập đơn giá (VNĐ)"
+                    formControlName="price"
+                    />
+                    <div class="text-danger" *ngIf="form.get('price')?.invalid && form.get('price')?.touched">
+                    Đơn giá phải là số không âm.
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Số lượng còn</label>
-                        <input type="number" class="form-control" formControlName="quantity">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Số lượng còn</label>
+                    <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Nhập số lượng hiện có"
+                    formControlName="quantity"
+                    />
+                    <div class="text-danger" *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched">
+                    Số lượng phải là số nguyên >= 0.
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100"
+                    [disabled]="form.invalid"
+                >
+                    Cập nhật
+                </button>
                 </form>
+
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private readonly APIUrl = 'https://localhost:44316/api';
+  private readonly APIUrl = 'https://localhost:7201/api';
 
   constructor(private http: HttpClient) {}
 
@@ -167,7 +167,12 @@ export class SharedService {
     const headers = this.getAuthHeaders(); // thường là HttpHeaders
     return this.http.get<any>(`${this.APIUrl}/Staff/get-all?`, { params, headers }, );
   }
-  
+  getDoctors(): Observable<any> {
+    return this.http.get<any>(`${this.APIUrl}/Staff/doctors`,{
+      headers: this.getAuthHeaders(),
+      
+    });
+  }
   //#endregion
 
   //#region Quản lý kho thuốc

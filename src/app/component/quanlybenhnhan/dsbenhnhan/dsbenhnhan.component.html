@@ -61,9 +61,28 @@
               <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.address }}</td>
               <td class="fs-4"(click)="goToMedicalRecord(bn.id, bn.fullName)">{{ bn.email }}</td>
               <td class="fs-4">
-                <button type="button" class="btn btn-primary btn-sm " (click)="chonBenhNhanDeSua(bn)" >Sửa</button>
-                &nbsp;&nbsp;
-                <button type="button" class="btn btn-danger btn-sm" (click)="xoaBenhNhan(bn.id)" >Xoá</button>
+              <div class="d-flex gap-1">
+                <button 
+                  type="button" 
+                  class="btn btn-outline-primary btn-sm" 
+                  (click)="chonBenhNhanDeSua(bn)"
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="top" 
+                  title="Sửa thông tin"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button 
+                  type="button" 
+                  class="btn btn-outline-danger btn-sm" 
+                  (click)="xoaBenhNhan(bn.id)"
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="top" 
+                  title="Xoá bệnh nhân"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
               </td>
             </tr>
           </tbody>

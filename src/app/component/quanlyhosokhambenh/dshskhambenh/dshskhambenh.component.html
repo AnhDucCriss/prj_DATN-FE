@@ -62,7 +62,8 @@
                 <th class="text-dark font-medium fs-4">Bác sĩ điều trị</th>
                 <th class="text-dark font-medium fs-4">Triệu chứng</th>
                 <th class="text-dark font-medium fs-4">Chuẩn đoán</th>
-                <th class="text-dark font-medium fs-4">Thao tác</th>
+                <th class="text-dark text-center font-medium fs-4">Thao tác</th>
+                <th class="text-dark text-center font-medium fs-4">Chuyển tiếp</th>
               </tr>
             </thead>
             <tbody>
@@ -71,14 +72,58 @@
                 <td class="fs-4">{{ hs.doctorName }}</td>
                 <td class="fs-4">{{ hs.symptoms }}</td>
                 <td class="fs-4">{{ hs.conclusion }}</td>
-                <td class="fs-4">
-                  <button type="button" class="btn btn-primary btn-sm" (click)="suaHSKB(hs.id, hs)">Sửa</button>
+                <td class="fs-4 text-center">
+                  
+                    <button 
+                      type="button" 
+                      class="btn btn-outline-primary btn-sm" 
+                      (click)="suaHSKB(hs.id, hs)"
+                      data-bs-toggle="tooltip" 
+                      data-bs-placement="top" 
+                      title="Sửa thông tin"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                    </button>&nbsp;&nbsp;
+                    <button 
+                      type="button" 
+                      class="btn btn-outline-danger btn-sm" 
+                      (click)="xoaHSKB(hs.id)"
+                      data-bs-toggle="tooltip" 
+                      data-bs-placement="top" 
+                      title="Xoá bệnh nhân"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  
+                  <!-- <button type="button" class="btn btn-primary btn-sm" (click)="suaHSKB(hs.id, hs)">Sửa</button>
                   &nbsp;&nbsp;
                   <button type="button" class="btn btn-danger btn-sm" (click)="xoaHSKB(hs.id)">Xoá</button>
                   &nbsp;&nbsp;
                   <button type="button" class="btn btn-secondary btn-sm" (click)="goToPresciption(hs.id)">Đơn thuốc</button>
                   &nbsp;&nbsp;
-                  <button type="button" class="btn btn-secondary btn-sm" (click)="goToInvoice(hs.id)">Hoá đơn</button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="goToInvoice(hs.id)">Hoá đơn</button> -->
+                </td>
+                <td class="fs-4 text-center">
+                  <button 
+                      type="button" 
+                      class="btn btn-outline-secondary btn-sm" 
+                      (click)="goToPresciption(hs.id)"
+                      data-bs-toggle="tooltip" 
+                      data-bs-placement="top" 
+                      title="Xoá bệnh nhân"
+                    >
+                      <i class="bi bi-file-text"></i> Đơn thuốc
+                    </button>&nbsp;&nbsp;
+                    <button 
+                      type="button" 
+                      class="btn btn-outline-secondary btn-sm" 
+                      (click)="goToInvoice(hs.id)"
+                      data-bs-toggle="tooltip" 
+                      data-bs-placement="top" 
+                      title="Xoá bệnh nhân"
+                    >
+                      <i class="bi bi-currency-dollar"></i> Hoá đơn
+                    </button>
                 </td>
               </tr>
             </tbody>

@@ -59,9 +59,31 @@
               <td class="fs-4">{{ thuoc.price | number:'1.0-0' }} đ</td>
               <td class="fs-4">{{ thuoc.quantity }}</td>
               <td class="fs-4">
-                <button type="button" class="btn btn-sm btn-primary" (click)="chonThuocDeSua(thuoc)">Sửa</button>
-                &nbsp;&nbsp;
-                <button type="button" class="btn btn-danger btn-sm" (click)="xoaThuoc(thuoc.id)">Xoá</button>
+              <div class="d-flex gap-1">
+                <button 
+                  type="button" 
+                  class="btn btn-outline-primary btn-sm" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#updAccountModal"
+                  (click)="chonThuocDeSua(thuoc)"
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="top" 
+                  title="Sửa thông tin nhân viên"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button 
+                  type="button" 
+                  class="btn btn-outline-danger btn-sm" 
+                  (click)="xoaThuoc(thuoc.id)"
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="top" 
+                  title="Xoá nhân viên"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+                
               </td>
             </tr>
           </tbody>

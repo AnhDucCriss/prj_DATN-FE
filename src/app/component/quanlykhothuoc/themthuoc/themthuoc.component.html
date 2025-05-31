@@ -13,26 +13,101 @@
         <form (ngSubmit)="addMedicine()" #addMedicineForm="ngForm">
             <div class="mb-3">
                 <label for="medicineName" class="form-label">Tên thuốc</label>
-                <input type="text" class="form-control" id="medicineName" name="medicineName" required [(ngModel)]="newMedicine.medicineName">
+                <input
+                type="text"
+                class="form-control"
+                id="medicineName"
+                name="medicineName"
+                placeholder="Nhập tên thuốc"
+                required
+                maxlength="100"
+                [(ngModel)]="newMedicine.medicineName"
+                #medicineName="ngModel"
+                />
+                <div class="text-danger" *ngIf="medicineName.invalid && medicineName.touched">
+                Tên thuốc là bắt buộc và tối đa 100 ký tự.
+                </div>
             </div>
+
             <div class="mb-3">
                 <label for="unit" class="form-label">Đơn vị</label>
-                <input type="text" class="form-control" id="unit" name="unit" [(ngModel)]="newMedicine.unit">
+                <input
+                type="text"
+                class="form-control"
+                id="unit"
+                name="unit"
+                placeholder="Ví dụ: viên, chai, hộp..."
+                maxlength="50"
+                [(ngModel)]="newMedicine.unit"
+                #unit="ngModel"
+                />
+                <div class="text-danger" *ngIf="unit.invalid && unit.touched">
+                Đơn vị tối đa 50 ký tự.
+                </div>
             </div>
+
             <div class="mb-3">
                 <label for="price" class="form-label">Giá</label>
-                <input type="number" class="form-control" id="price" name="price" required min="0" [(ngModel)]="newMedicine.price">
+                <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                placeholder="Nhập giá thuốc (VNĐ)"
+                required
+                min="0"
+                [(ngModel)]="newMedicine.price"
+                #price="ngModel"
+                />
+                <div class="text-danger" *ngIf="price.invalid && price.touched">
+                Giá thuốc phải là số không âm.
+                </div>
             </div>
+
             <div class="mb-3">
                 <label for="category" class="form-label">Loại</label>
-                <input type="text" class="form-control" id="category" name="category" [(ngModel)]="newMedicine.category">
+                <input
+                type="text"
+                class="form-control"
+                id="category"
+                name="category"
+                placeholder="Nhập loại thuốc (gợi nhớ)"
+                maxlength="50"
+                [(ngModel)]="newMedicine.category"
+                #category="ngModel"
+                />
+                <div class="text-danger" *ngIf="category.invalid && category.touched">
+                Loại thuốc tối đa 50 ký tự.
+                </div>
             </div>
+
             <div class="mb-3">
                 <label for="description" class="form-label">Mô tả</label>
-                <textarea class="form-control" id="description" name="description" [(ngModel)]="newMedicine.description" rows="2"></textarea>
+                <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="Nhập mô tả về thuốc (tùy chọn)"
+                maxlength="255"
+                rows="2"
+                [(ngModel)]="newMedicine.description"
+                #description="ngModel"
+                ></textarea>
+                <div class="text-danger" *ngIf="description.invalid && description.touched">
+                Mô tả tối đa 255 ký tự.
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100" data-bs-dismiss="modal">Thêm thuốc</button>
-        </form>
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+                [disabled]="addMedicineForm.invalid"
+                data-bs-dismiss="modal"
+            >
+                Thêm thuốc
+            </button>
+            </form>
+
         </div>
     </div>
     </div>

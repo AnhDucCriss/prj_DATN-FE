@@ -7,40 +7,101 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="capNhatHoSoKhamBenh()">
-            <div class="mb-3">
-                <label class="form-label">Ngày khám</label>
-                <input type="date" class="form-control" formControlName="examinationDate" />
-                <div *ngIf="form.get('examinationDate')?.invalid && form.get('examinationDate')?.touched" class="text-danger">
-                    Ngày khám không được để trống
-                </div>
+          
+          <!-- Ngày khám -->
+          <div class="mb-3">
+            <label class="form-label">
+              Ngày khám <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="date" 
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('examinationDate')"
+              formControlName="examinationDate" 
+            />
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('examinationDate')">
+              {{ getFieldError('examinationDate') }}
             </div>
-            <div class="mb-3">
-                <label class="form-label">Triệu chứng</label>
-                <textarea class="form-control" formControlName="symptoms"></textarea>
-                <div *ngIf="form.get('symptom')?.invalid && form.get('symptoms')?.touched" class="text-danger">
-                Triệu chứng không được để trống
-                </div>
-            </div>
+          </div>
 
-            <div class="mb-3">
-                <label class="form-label">Chuẩn đoán</label>
-                <textarea class="form-control" formControlName="conclusion"></textarea>
-                <div *ngIf="form.get('conclusion')?.invalid && form.get('conclusion')?.touched" class="text-danger">
-                Chuẩn đoán không được để trống
-                </div>
+          <!-- Triệu chứng -->
+          <div class="mb-3">
+            <label class="form-label">
+              Triệu chứng <span class="text-danger">*</span>
+            </label>
+            <textarea 
+              class="form-control" 
+              rows="3"
+              [class.is-invalid]="isFieldInvalid('symptoms')"
+              formControlName="symptoms"
+              placeholder="Nhập triệu chứng của bệnh nhân (tối thiểu 1 ký tự)"
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('symptoms')">
+              {{ getFieldError('symptoms') }}
             </div>
+            <small class="form-text text-muted">
+              {{ form.get('symptoms')?.value?.length || 0 }}/1000 ký tự
+            </small>
+          </div>
 
-            <div class="mb-3">
-                <label class="form-label">Tên bác sĩ điều trị</label>
-                <input type="text" class="form-control" formControlName="doctorName" />
-                <div *ngIf="form.get('doctorName')?.invalid && form.get('doctorName')?.touched" class="text-danger">
-                Tên bác sĩ điều trị không được để trống
-                </div>
+          <!-- Chuẩn đoán -->
+          <div class="mb-3">
+            <label class="form-label">
+              Chuẩn đoán <span class="text-danger">*</span>
+            </label>
+            <textarea 
+              class="form-control" 
+              rows="3"
+              [class.is-invalid]="isFieldInvalid('conclusion')"
+              formControlName="conclusion"
+              placeholder="Nhập chuẩn đoán của bác sĩ (tối thiểu 5 ký tự)"
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('conclusion')">
+              {{ getFieldError('conclusion') }}
             </div>
+            <small class="form-text text-muted">
+              {{ form.get('conclusion')?.value?.length || 0 }}/1000 ký tự
+            </small>
+          </div>
 
-            <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+          <!-- Tên bác sĩ -->
+          <div class="mb-3">
+            <label class="form-label">
+              Tên bác sĩ điều trị <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="text" 
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('doctorName')"
+              formControlName="doctorName"
+              placeholder="Nhập họ tên bác sĩ điều trị"
+            />
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('doctorName')">
+              {{ getFieldError('doctorName') }}
+            </div>
+          </div>
+
+          <!-- Nút submit -->
+          <button 
+            type="submit" 
+            class="btn btn-primary w-100"
+            [disabled]="form.invalid"
+          >
+            <span *ngIf="form.invalid" class="me-2">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            Cập nhật
+          </button>
+          
+          <!-- Thông báo validation tổng quát -->
+          <div class="mt-2" *ngIf="form.invalid && form.touched">
+            <small class="text-danger">
+              <i class="fas fa-info-circle me-1"></i>
+              Vui lòng kiểm tra lại các thông tin bắt buộc (*)
+            </small>
+          </div>
+          
         </form>
-
       </div>
     </div>
   </div>

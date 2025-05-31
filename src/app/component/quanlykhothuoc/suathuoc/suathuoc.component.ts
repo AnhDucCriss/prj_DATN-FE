@@ -30,7 +30,7 @@ export class SuathuocComponent implements OnInit, OnChanges  {
         unit: [this.thuoc.unit, Validators.required],
         price: [this.thuoc.price, [Validators.required, Validators.min(0)]],
         category: [this.thuoc.category, Validators.maxLength(50)],
-        quantity: [this.thuoc.quantity, Validators.min(0)],
+        quantity: [this.thuoc.quantity, [Validators.required, Validators.min(0)]],
       });
     }
   }

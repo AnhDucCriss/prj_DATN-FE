@@ -22,9 +22,33 @@
                     <td class="fs-4">{{ tk.password }}</td>
                     <td class="fs-4">{{ convertRole(tk.role) }}</td>
                     <td class="fs-4">
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updAccountModal" (click)="chonTaiKhoanDeSua(tk)">Sửa</button>
+                    <div class="d-flex gap-1">
+                      <button 
+                        type="button" 
+                        class="btn btn-outline-primary btn-sm" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#updAccountModal"
+                        (click)="chonTaiKhoanDeSua(tk)"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="Sửa thông tin nhân viên"
+                      >
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button 
+                        type="button" 
+                        class="btn btn-outline-danger btn-sm" 
+                        (click)="deleteAccount(tk.id)"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="Xoá nhân viên"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                      <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updAccountModal" (click)="chonTaiKhoanDeSua(tk)">Sửa</button>
                        &nbsp;&nbsp;
-                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteAccount(tk.id)">Xoá</button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteAccount(tk.id)">Xoá</button> -->
                     </td>
                   </tr>
                             

@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.0.1",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.0.1",
     "@angular/common": "^16.0.1",
     "@angular/compiler": "^16.0.1",
@@ -30,6 +30,7 @@
     "file-saver": "^2.0.5",
     "file-saver-es": "^2.0.5",
     "ng-apexcharts": "^1.7.6",
+    "ngx-toastr": "^19.0.0",
     "npm-check-updates": "^16.10.12",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
