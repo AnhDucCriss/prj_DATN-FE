@@ -25,7 +25,7 @@ export interface RevenueStatsResponse {
 })
 
 export class DashboardService {
-  private apiUrl = 'https://localhost:7201/api'; 
+  private apiUrl = 'https://localhost:44316/api'; 
 
   constructor(private http: HttpClient) { }
 

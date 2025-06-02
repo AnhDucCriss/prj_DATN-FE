@@ -71,6 +71,8 @@ export class SalesSummaryComponent implements OnInit, OnDestroy {
       }
     },
     yaxis: {
+      min: 0, // Thêm dòng này để đảm bảo trục Y bắt đầu từ 0
+      forceNiceScale: true, // Thêm để tự động làm tròn scale
       labels: {
         style: {
           fontSize: '12px'
@@ -130,10 +132,7 @@ export class SalesSummaryComponent implements OnInit, OnDestroy {
           name: "Tổng số hồ sơ khám",
           data: data.totalRecords,
         },
-        {
-          name: "Số bệnh nhân khám", 
-          data: data.uniquePatients,
-        },
+        
       ],
       xaxis: {
         ...this.medicalRecordsChartOptions.xaxis,

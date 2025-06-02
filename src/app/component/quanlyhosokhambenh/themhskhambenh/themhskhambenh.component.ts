@@ -147,8 +147,8 @@ export class ThemhskhambenhComponent implements OnInit {
     // Kiểm tra triệu chứng
     if (!this.newHSKB.symptoms || this.newHSKB.symptoms.trim() === '') {
       errors.push('Vui lòng nhập triệu chứng');
-    } else if (this.newHSKB.symptoms.trim().length < 5) {
-      errors.push('Triệu chứng phải có ít nhất 5 ký tự');
+    } else if (this.newHSKB.symptoms.trim().length <1) {
+      errors.push('Triệu chứng phải có ít nhất 1 ký tự');
     } else if (this.newHSKB.symptoms.trim().length > 500) {
       errors.push('Triệu chứng không được vượt quá 500 ký tự');
     }

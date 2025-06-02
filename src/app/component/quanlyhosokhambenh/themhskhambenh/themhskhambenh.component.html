@@ -61,26 +61,35 @@
             </div>
           </div>
 
-          <!-- Số điện thoại -->
+         
+        <!-- Kết luận -->
           <div class="mb-3">
-            <label for="conclusion" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
-            <input 
-              type="tel" 
+            <label for="conclusion" class="form-label">Kết luận <span class="text-danger">*</span></label>
+            <textarea 
               class="form-control" 
               id="conclusion" 
               name="conclusion" 
               required 
-              pattern="^(0|\+84)[0-9]{9,10}$"
-              placeholder="VD: 0123456789 hoặc +84123456789"
+              rows="3"
+              placeholder="Nhập kết luận khám bệnh"
               [(ngModel)]="newHSKB.conclusion"
               #conclusion="ngModel"
               [class.is-invalid]="conclusion.invalid && (conclusion.dirty || conclusion.touched)"
               [class.is-valid]="conclusion.valid && (conclusion.dirty || conclusion.touched)">
+            </textarea>
+            
+            <!-- Thông báo khi nhập sai -->
             <div class="invalid-feedback" *ngIf="conclusion.invalid && (conclusion.dirty || conclusion.touched)">
-              <div *ngIf="conclusion.errors?.['required']">Vui lòng nhập số điện thoại</div>
-              <div *ngIf="conclusion.errors?.['pattern']">Số điện thoại không đúng định dạng (VD: 0123456789)</div>
+              <div *ngIf="conclusion.errors?.['required']">Vui lòng nhập kết luận</div>
+            </div>
+            
+            <!-- Thông báo khi nhập đúng -->
+            <div class="valid-feedback" *ngIf="conclusion.valid && (conclusion.dirty || conclusion.touched)">
+              Hợp lệ
             </div>
           </div>
+
+
 
           <!-- Submit button -->
           <button 

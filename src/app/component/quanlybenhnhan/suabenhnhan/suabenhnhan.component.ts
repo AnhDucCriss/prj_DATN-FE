@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../../shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-suabenhnhan',
@@ -14,7 +15,11 @@ export class SuabenhnhanComponent implements OnInit, OnChanges {
 
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: SharedService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private service: SharedService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.khoiTaoForm();
@@ -38,7 +43,6 @@ export class SuabenhnhanComponent implements OnInit, OnChanges {
   }
 
   capNhatBenhNhan() {    
-  
     if (this.form.valid) {
       const updatedPatient = {
         id: this.benhNhan.id,
@@ -50,10 +54,17 @@ export class SuabenhnhanComponent implements OnInit, OnChanges {
         email: this.form.value.email,
       };
      
-      this.service.suaBenhNhan(updatedPatient.id, updatedPatient).subscribe(res => {
-        alert("Cập nhật thành công");
-        this.reloadEvent.emit();
-        this.dongModal.emit();
+      this.service.suaBenhNhan(updatedPatient.id, updatedPatient).subscribe({
+        next: (res) => {
+          this.toastr.success( 'Cập nhật bệnh nhân thành công!');
+          this.reloadEvent.emit();
+          this.dongModal.emit();
+        },
+        error: (error) => {
+          const errorMessage = error.error?.message || 'Có lỗi xảy ra khi cập nhật bệnh nhân!';
+          this.toastr.error(errorMessage, 'Lỗi');
+          console.error('Lỗi khi cập nhật bệnh nhân:', error);
+        }
       });
     }
   }

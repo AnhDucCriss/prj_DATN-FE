@@ -64,21 +64,29 @@
             </small>
           </div>
 
-          <!-- Tên bác sĩ -->
           <div class="mb-3">
-            <label class="form-label">
-              Tên bác sĩ điều trị <span class="text-danger">*</span>
+            <label for="doctorName" class="form-label">
+              Bác sĩ điều trị <span class="text-danger">*</span>
             </label>
-            <input 
-              type="text" 
+            <select 
+              id="doctorName"
               class="form-control"
-              [class.is-invalid]="isFieldInvalid('doctorName')"
               formControlName="doctorName"
-              placeholder="Nhập họ tên bác sĩ điều trị"
-            />
+              [class.is-invalid]="isFieldInvalid('doctorName')"
+              [class.is-valid]="isFieldValid('doctorName')"
+            >
+              <option value="">-- Chọn bác sĩ --</option>
+              <option *ngFor="let doctor of doctors" [value]="doctor.fullName">
+                {{doctor.fullName}}
+              </option>
+            </select>
             <div class="invalid-feedback" *ngIf="isFieldInvalid('doctorName')">
               {{ getFieldError('doctorName') }}
             </div>
+            <small class="form-text text-muted" *ngIf="doctors.length === 0">
+              <i class="fas fa-info-circle me-1"></i>
+              Đang tải danh sách bác sĩ...
+            </small>
           </div>
 
           <!-- Nút submit -->

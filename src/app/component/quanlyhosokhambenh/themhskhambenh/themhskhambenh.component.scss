@@ -102,3 +102,10 @@
     padding: 1rem;
   }
 }
+.toast-container {
+  z-index: 999999 !important;
+}
+
+.cdk-overlay-container {
+  z-index: 999998 !important;
+}
